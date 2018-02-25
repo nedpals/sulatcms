@@ -63,6 +63,7 @@
     "css-loader": "^0.23.1",
     "eslint-config-vue": "latest",
     "eslint-plugin-vue": "latest",
+    "exports-loader": "^0.7.0",
     "express": "^4.14.0",
     "extract-text-webpack-plugin": "^2.0.0-rc.3",
     "file-loader": "^0.9.0",

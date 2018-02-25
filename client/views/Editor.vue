@@ -1,19 +1,18 @@
 <template>
   <div class="container">
       {{ post($route.params.filename) }}
-      <div class="cms-editor"></div>
+      <textarea id="cms-editor"></textarea>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import * as Pen from 'pen/src/pen'
-import * as markdown from 'pen/src/markdown'
+const Pen = require('exports-loader?Pen!pen/src/pen')
+// const markdown = require('exports-loader?markdown!pen/src/markdown')
 
 export default {
-  created() {
-    const editor = this.initializePen(document.getElementsByClassName('cms-editor')[0])
-    editor.rebuild()
+  mounted() {
+    this.initializePen(document.getElementById('cms-editor'))
   },
   computed: {
     ...mapGetters({
