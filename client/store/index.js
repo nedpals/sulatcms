@@ -11,7 +11,7 @@ const state = {
       author: 'Ned Palacios',
       tags: ['hello', 'world'],
       filename: 'post-1.md',
-      content: '# Hello world!'
+      content: '<h1>Hello world!</h1>'
     },
     {
       title: 'Post 2',
