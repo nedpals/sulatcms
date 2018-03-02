@@ -10,6 +10,8 @@
   "author": "Ned Palacios",
   "license": "MIT",
   "dependencies": {
+    "mithril": "^1.1.6",
+    "spectre.css": "^0.5.1"
   },
   "devDependencies": {
     "poi": "^9.6.13",
