@@ -1,9 +1,4 @@
-import './promise-polyfill'
-import { app } from './app'
-
-// Enable progressive web app support (with offline-plugin)
-if (process.env.NODE_ENV === 'production') {
-  require('./pwa')
-}
-
-app.$mount('#app')
+import * as m from 'mithril'
+import "spectre.css/src/spectre.scss"
+import "spectre.css/src/spectre-icons.scss"
+import router from "./router"
