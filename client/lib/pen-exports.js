@@ -1,6 +1,4 @@
 /*! Licensed under MIT, https://github.com/sofish/pen */
-(function(root, doc) {
-
   var Pen, debugMode, selection, utils = {};
   var toString = Object.prototype.toString;
   var slice = Array.prototype.slice;
@@ -98,7 +96,7 @@
     if (config.nodeType === 1) {
       defaults.editor = config;
     } else if (config.match && config.match(/^#[\S]+$/)) {
-      defaults.editor = doc.getElementById(config.slice(1));
+      defaults.editor = document.getElementById(config.slice(1));
     } else {
       defaults = utils.copy(defaults, config);
     }
@@ -110,7 +108,7 @@
     var message = ' to exec 「' + cmd + '」 command' + (val ? (' with value: ' + val) : '');
 
     try {
-      doc.execCommand(cmd, false, val);
+      document.execCommand(cmd, false, val);
     } catch(err) {
       // TODO: there's an error when insert a image to document, but not a bug
       return utils.log('fail' + message, true);
@@ -170,12 +168,12 @@
     }
 
     if (icons) {
-      ctx._menu = doc.createElement('div');
+      ctx._menu = document.createElement('div');
       ctx._menu.setAttribute('class', ctx.config.class + '-menu pen-menu');
       ctx._menu.innerHTML = icons;
       ctx._inputBar = ctx._menu.querySelector('input');
       toggleNode(ctx._menu, true);
-      doc.body.appendChild(ctx._menu);
+      document.body.appendChild(ctx._menu);
     }
     if (ctx._toolbar && ctx._inputBar) toggleNode(ctx._inputBar);
   }
@@ -199,8 +197,8 @@
       };
 
       // change menu offset when window resize / scroll
-      addListener(ctx, root, 'resize', setpos);
-      addListener(ctx, root, 'scroll', setpos);
+      addListener(ctx, window, 'resize', setpos);
+      addListener(ctx, window, 'scroll', setpos);
 
       // toggle toolbar on mouse select
       var selecting = false;
@@ -218,7 +216,7 @@
       // Hide menu when focusing outside of editor
       outsideClick = function(e) {
         if (ctx._menu && !containsNode(editor, e.target) && !containsNode(ctx._menu, e.target)) {
-          removeListener(ctx, doc, 'click', outsideClick);
+          removeListener(ctx, document, 'click', outsideClick);
           toggleMenu(100);
         }
       };
@@ -236,7 +234,7 @@
       if (!node || !node.nextSibling || !lineBreakReg.test(node.nodeName)) return;
       if (node.nodeName !== node.nextSibling.nodeName) return;
       // hack for webkit, make 'enter' behavior like as firefox.
-      if (node.lastChild.nodeName !== 'BR') node.appendChild(doc.createElement('br'));
+      if (node.lastChild.nodeName !== 'BR') node.appendChild(document.createElement('br'));
       utils.forEach(node.nextSibling.childNodes, function(child) {
         if (child) node.appendChild(child);
       }, true);
@@ -255,7 +253,7 @@
       if (lastChild.previousSibling.textContent || lastChild.textContent) return;
       // quit block mode for 2 'enter'
       e.preventDefault();
-      var p = doc.createElement('p');
+      var p = document.createElement('p');
       p.innerHTML = '<br>';
       node.removeChild(lastChild);
       if (!node.nextSibling) node.parentNode.appendChild(p);
@@ -315,7 +313,7 @@
     // listen for placeholder
     addListener(ctx, editor, 'focus', function() {
       if (ctx.isEmpty()) lineBreak(ctx, true);
-      addListener(ctx, doc, 'click', outsideClick);
+      addListener(ctx, document, 'click', outsideClick);
     });
 
     addListener(ctx, editor, 'blur', function() {
@@ -408,13 +406,13 @@
   }
 
   function getNode(ctx, byRoot) {
-    var node, root = ctx.config.editor;
+    var node, window = ctx.config.editor;
     ctx._range = ctx._range || ctx.getRange();
     node = ctx._range.commonAncestorContainer;
-    if (!node || node === root) return null;
-    while (node && (node.nodeType !== 1) && (node.parentNode !== root)) node = node.parentNode;
-    while (node && byRoot && (node.parentNode !== root)) node = node.parentNode;
-    return containsNode(root, node) ? node : null;
+    if (!node || node === window) return null;
+    while (node && (node.nodeType !== 1) && (node.parentNode !== window)) node = node.parentNode;
+    while (node && byRoot && (node.parentNode !== window)) node = node.parentNode;
+    return containsNode(window, node) ? node : null;
   }
 
   // node effects
@@ -432,7 +430,7 @@
 
   // breakout from node
   function lineBreak(ctx, empty) {
-    var range = ctx._range = ctx.getRange(), node = doc.createElement('p');
+    var range = ctx._range = ctx.getRange(), node = document.createElement('p');
     if (empty) ctx.config.editor.innerHTML = '';
     node.innerHTML = '<br>';
     range.insertNode(node);
@@ -455,8 +453,8 @@
     } else if (node.nodeType === 3) {
       var result = urlToLink(node.nodeValue || '');
       if (!result.links) return;
-      var frag = doc.createDocumentFragment(),
-        div = doc.createElement('div');
+      var frag = document.createDocumentFragment(),
+        div = document.createElement('div');
       div.innerHTML = result.text;
       while (div.childNodes.length) frag.appendChild(div.childNodes[0]);
       node.parentNode.replaceChild(frag, node);
@@ -570,7 +568,7 @@
 
   Pen.prototype.getRange = function() {
     var editor = this.config.editor, range = selection.rangeCount && selection.getRangeAt(0);
-    if (!range) range = doc.createRange();
+    if (!range) range = document.createRange();
     if (!containsNode(editor, range.commonAncestorContainer)) {
       range.selectNodeContents(editor);
       range.collapse(false);
@@ -806,7 +804,7 @@
   };
 
   // a fallback for old browers
-  root.Pen = function(config) {
+  window.Pen = function(config) {
     if (!config) return utils.log('can\'t find config', true);
 
     var defaults = utils.merge(config)
@@ -848,11 +846,9 @@
   };
 
   // make it accessible
-  if (doc.getSelection) {
-    selection = doc.getSelection();
-    root.Pen = Pen;
+  if (document.getSelection) {
+    selection = document.getSelection();
+    window.Pen = Pen;
   }
 
-modules.export = Pen
-
-}(window, document));
+module.export = Pen
