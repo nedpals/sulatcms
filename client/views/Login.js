@@ -1,4 +1,4 @@
-export default m({
+export default {
   view: function() {
     return m("div", {style: "margin-top: 6rem;"}, [
       m(".columns", [
@@ -15,4 +15,4 @@ export default m({
       ])
     ])
   }
-})
+}
