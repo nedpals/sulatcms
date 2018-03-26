@@ -1,9 +1,5 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-
-Vue.use(Vuex)
-
-const state = {
+const Post = {}
+Post.state = {
   posts: [
     {
       title: 'Post 1',
@@ -24,34 +20,24 @@ const state = {
   ]
 }
 
-const mutations = {
-  INCREMENT (state) {
-    state.count++
-  },
-  DECREMENT (state) {
-    state.count--
+Post.mutations = {
+  changeData(data) {
+
   }
 }
 
-const actions = {
-  incrementAsync ({ commit }) {
+Post.actions = {
+  incrementAsync({ commit }) {
     setTimeout(() => {
       commit('INCREMENT')
     }, 200)
   }
 }
 
-const getters = {
-  getPostByFilename: (state) => (filename) => {
-    return state.posts.find(post => post.filename === filename)
+Post.getters = {
+  getPostByFilename(filename) {
+    return Post.state.filename === filename
   }
 }
 
-const store = new Vuex.Store({
-  state,
-  mutations,
-  actions,
-  getters
-})
-
-export default store
+export default Post
