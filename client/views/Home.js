@@ -20,47 +20,53 @@ export default {
     }
   ],
   view(vnode) {
+    return (
+      <div class="container">
+        <div class="columns">
           {m(FileView)}
+          <div class="column p-2 col-10">
+            <div class="container">
+              <div>
+                <a href="/new" oncreate={m.route.link} class="btn btn-primary"><i class="icon icon-lg icon-plus"></i> Add new post</a>
+                <div class="divider"></div>
+              </div>
+              <div>
+                <div class="columns">
+                  <div class="column p-1 m-2 col-12">
+                    {vnode.state.posts ?
                     vnode.state.posts.map((post) => {
                       return [
-                          m("h2", { style: { "margin-bottom": "0" } },
-                            m("a", { href: '/edit/' + post.filename, oncreate: m.route.link } ,
-                              post.title
-                            )
-                          ),
-                          m("p.text-uppercase.text-gray",
-                            `By ${post.author} Filed under: ${post.tags.join(', ')}`
-                          )
+                        <div key={post.filename}>
+                          <h2 style="margin-bottom:0;">
+                            <a href={"/edit/" + post.filename} oncreate={m.route.link}>{post.title}</a>
+                          </h2>
+                          <p class="text-uppercase text-gray">By {post.author} Filed under: {post.tags.join(', ')}</p>
+                        </div>
                       ]
-                    }) : null
-                  )
-                ),
-                m(".empty",
-                  !vnode.state.posts ?
-                  [
-                    m(".empty-icon",
-                      m("i.icon.icon-4x.icon-mail")
-                    ),
-                    m("p.empty-title.h5",
-                      "You haven't write a single post!"
-                    ),
-                    m("p.empty-subtitle",
-                      "Click the button to express what's on your mind."
-                    ),
-                    m(".empty-action",
-                      m("button.btn.btn-primary",
-                        "Add a post"
-                      )
-                    )
-                  ] : null
-                ),
-                m(".columns",
-                )
-              ]
-            )
-          )
-        ]
-      )
+                    }) : null}
+                  </div>
+                </div>
+              </div>
+              {!vnode.state.posts ?
+              (
+                <div class="empty">
+                  <div class="empty-icon">
+                    <i class="icon icon-4x icon-mail"></i>
+                  </div>
+                  <p class="empty-title h5">You haven't write a single post!</p>
+                  <p class="empty-subtitle">Click the button to express what's on your mind</p>
+                  <div class="empty-action">
+                    <button class="btn btn-primary">Add a post</button>
+                  </div>
+                </div>
+              ) : null}
+              <div class="columns">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     )
   }
 }
