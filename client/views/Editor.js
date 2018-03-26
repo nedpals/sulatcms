@@ -1,7 +1,9 @@
 import SimpleMDE from 'simplemde'
 import "simplemde/dist/simplemde.min.css"
+import format from "date-fns/format"
 
 export default {
+    date: format(Date.now(), 'YYYY-MM-DD'),
   oncreate(vnode) {
     const md = this.initEditor(document.getElementById("cms-editor"), vnode.state.post.content)
     md.codemirror.focus()
