@@ -1,0 +1,29 @@
+@import "node_modules/spectre.css/src/variables";
+
+.editor .CodeMirror {
+    border: none;
+}
+
+.editor .editor-toolbar {
+    border: 1px solid #bbb;
+    border-radius: 4px;
+}
+
+.editor > .form-horizonal > .form-group label {
+    text-transform: uppercase;
+    color: $gray-color;
+}
+
+.editor .form-input {
+    border: none;
+
+    &:hover {
+        border: initial;
+    }
+
+    &.title-field {
+        font-size: 2rem;
+        height: 3rem;
+        padding: 0.45rem 0.6rem;
+    }
+}
