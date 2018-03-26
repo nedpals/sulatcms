@@ -1,3 +1,5 @@
+import FileView from '../components/FileView'
+
 export default {
   posts: [
     {
@@ -18,64 +20,7 @@ export default {
     }
   ],
   view(vnode) {
-    return m(".container",
-      m(".columns",
-        [
-          m(".column.p-2.col-2.bg-gray", {style: {"height": "100vh"}},
-            [
-              m(".text-center",
-                [
-                  m("figure.avatar.avatar-lg[data-initial='YZ']", {style: {"background-color": "#5755d9"}}),
-                  m("h3", "sitename.xyz")
-                ]
-              ),
-              m("ul.nav",
-                [
-                  m("li.nav-item",
-                    m("a[href='#']", "Link")
-                  ),
-                  m("li.nav-item",
-                    m("a[href='#']", "Link")
-                  ),
-                  m("li.nav-item",
-                    m("a[href='#']",
-                      "Link"
-                    )
-                  ),
-                  m("li.nav-item",
-                    m("a[href='#']",
-                      "Link"
-                    )
-                  ),
-                  m("li.nav-item",
-                    m("a[href='#']",
-                      "Link"
-                    )
-                  )
-                ]
-              )
-            ]
-          ),
-          m(".column.p-2.col-10",
-            m(".container",
-              [
-                m("div",
-                  [
-                    m("h1",
-                      "Posts"
-                    ),
-                    m("button.btn.btn-primary", {onclick: () => {m.route.set("/new")}},
-                      [
-                        m("i.icon.icon-lg.icon-plus"),
-                        "Add new post"
-                      ]
-                    ),
-                    m(".divider")
-                  ]
-                ),
-                m(".columns",
-                  m(".column.p-1.m-2.col-12",
-                    vnode.state.posts ?
+          {m(FileView)}
                     vnode.state.posts.map((post) => {
                       return [
                           m("h2", { style: { "margin-bottom": "0" } },
