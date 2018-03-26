@@ -1,23 +1,29 @@
-const Pen = require('../lib/pen-exports')
-import "pen/src/pen.css"
+import SimpleMDE from 'simplemde'
+import "simplemde/dist/simplemde.min.css"
 
 export default {
   oncreate(vnode) {
-    const editor = this.intializeEditor(document.getElementById('cms-editor'))
-    editor.focus()
-    editor.setContent("# Hello World")
-    this.editor = editor
+    const md = this.initEditor(document.getElementById("cms-editor"), vnode.state.post.content)
+    md.codemirror.focus()
+    md.codemirror.setCursor(100)
+    md.codemirror.on("change", () => {
+      const val = this.md.value()
+      vnode.dom.childNodes[1].oninput = this.setContent(val)
+    })
+    this.md = md
   },
-  intializeEditor(el) {
-    return new Pen(el, {
-      class: 'pen',
-      debug: true,
-      textarea: '<textarea name="content"></textarea>',
-      stay: false,
-      linksInNewWindow: false
+  initEditor(el, val) {
+    return new SimpleMDE({
+      element: el,
+      initialValue: val,
+      spellChecker: false,
+      placeholder: "Type here...",
+      toolbarTips: false,
+      status: false,
+      autoDownloadFontAwesome: true,
+      forceSync: true
     })
   },
-  view() {
-    return m(".container.grid-lg", m("#cms-editor"))
+                <textarea id="cms-editor"></textarea>
   }
 }
