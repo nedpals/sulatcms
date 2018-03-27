@@ -1,5 +1,6 @@
 const m = require('mithril')
 import "spectre.css/src/spectre.scss"
+import "spectre.css/src/spectre-exp.scss"
 import "spectre.css/src/spectre-icons.scss"
 import "../static/styles.scss"
 import Home from './views/Home.js'
