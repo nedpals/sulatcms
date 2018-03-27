@@ -22,16 +22,15 @@ export default {
   ],
   view(vnode) {
     return (
-      <div class="container">
+      <div class="container grid-lg">
         <div class="columns">
-          {m(FileView)}
-          <div class="column p-2 col-10">
+          <div class="column p-2">
             <div class="container">
-              <div>
-                <a href="/new" oncreate={m.route.link} class="btn btn-primary"><i class="icon icon-lg icon-plus"></i> Add new post</a>
-                <div class="divider"></div>
+              <div class="clearfix">
+                <a href="/new" oncreate={m.route.link} class="btn btn-primary float-left"><i class="icon icon-lg icon-plus"></i> Add new post</a>
                 <div class="float-right">{m(Search)}</div>
               </div>
+              <div class="divider"></div>
               <div>
                 <div class="columns">
                   <div class="column p-1 m-2 col-12">
