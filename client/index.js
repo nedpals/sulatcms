@@ -24,6 +24,7 @@ m.route(app, '/', {
     '/': v(Home),
     '/login': v(Login),
     '/edit/:filename': Editor,
+    '/edit/:key': Editor,
     '/new': Editor
 })
 

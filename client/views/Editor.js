@@ -20,7 +20,7 @@ export default {
     this.post[field] = value
   },
   oninit(vnode) {
-    vnode.state.post = store.state.posts.find(post => post.filename === vnode.attrs.filename) || vnode.state.post
+    vnode.state.post = store.state.posts.find(post => post.filename === vnode.attrs.key) || vnode.state.post
   },
   oncreate(vnode) {
     const md = this.initEditor(document.getElementById("cms-editor"), vnode.state.post.content)
@@ -31,6 +31,7 @@ export default {
       vnode.dom.childNodes[1].oninput = this.setContent(val)
     })
     this.md = md
+    m.redraw()
   },
   initEditor(el, val) {
     return new SimpleMDE({
