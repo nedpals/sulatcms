@@ -22,8 +22,7 @@ const v = (view, layout) => {
 
 m.route(app, '/', {
     '/': v(Home),
-    '/login': v(Login),
-    '/edit/:filename': Editor,
+    '/login': Login,
     '/edit/:key': Editor,
     '/new': Editor
 })
