@@ -15,11 +15,9 @@
 }
 
 .editor .form-input {
-    border: none;
-
-    &:hover {
-        border: initial;
-    }
+    border-top: none;
+    border-left: none;
+    border-right: none;
 
     &.title-field {
         font-size: 2rem;

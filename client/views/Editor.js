@@ -49,8 +49,30 @@ export default {
     return m(OffCanvas, {customClass: "editor-view"}, (
       <div class="container grid-md editor">
         <form class="form-horizonal columns">
+          {Object.entries(vnode.state.post).map((fields) => {
+            return (
+              <div
+                class={`form-group column ${(fields[0] === "title" ? "col-12 col-sm-12" :
+                  (fields[0] === "content" ? "col-12 col-sm-12" :
+                    `col-${Math.floor(12 / (Object.keys(vnode.state.post).length - 2))} col-sm-12`))}`}>
+                {fields[0] === "content" ?
+                  (
+                    <textarea id="cms-editor"></textarea>
+                  ) : (
+                    <div>
+                      {fields[0] === "title" ? null : (<label class="form-label">{fields[0].charAt(0).toUpperCase() + fields[0].slice(1)}</label>)}
+                      <input type="text"
+                        placeholder={`Insert ${fields[0]} here...`}
+                        class={`form-input ${fields[0] + "-field"} ${(fields[0] === "title" ? "h1 input-lg" : "")}`}
+                        value={vnode.state.post[fields[0]]}
+                        oninput={m.withAttr("value", (v) => { this.setValue(fields[0], v) })} />
+                    </div>
+                  )}
+              </div>
+            )
+          })}
         </form>
       </div>
-    )
+    ))
   }
 }
