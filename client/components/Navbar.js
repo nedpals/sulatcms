@@ -1,10 +1,8 @@
 export default {
     view() {
         return (
-            <header class="navbar">
+            <header class="navbar px-2">
                 <section class="navbar-section">
-                    <a href="#" class="btn btn-link">Docs</a>
-                    <a href="#" class="btn btn-link">Examples</a>
                     <span>domain.tld</span>
                 </section>
                 <section class="navbar-center">
