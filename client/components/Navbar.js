@@ -5,6 +5,7 @@ export default {
                 <section class="navbar-section">
                     <a href="#" class="btn btn-link">Docs</a>
                     <a href="#" class="btn btn-link">Examples</a>
+                    <span>domain.tld</span>
                 </section>
                 <section class="navbar-center">
                     <h1>Sulat</h1>
