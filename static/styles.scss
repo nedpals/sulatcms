@@ -1,5 +1,18 @@
 @import "node_modules/spectre.css/src/variables";
 
+.editor {
+    margin-top: 3rem;
+}
+
+.editor-view.off-canvas {
+    .off-canvas-content {
+        padding: 0;
+    }
+    .off-canvas-toggle button.btn {
+        margin-right: 0.4rem !important;
+    }
+}
+
 .editor .CodeMirror {
     border: none;
 }
