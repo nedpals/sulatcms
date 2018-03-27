@@ -1,4 +1,5 @@
 import FileView from '../components/FileView'
+import Search from '../components/Search'
 
 export default {
   posts: [
@@ -29,6 +30,7 @@ export default {
               <div>
                 <a href="/new" oncreate={m.route.link} class="btn btn-primary"><i class="icon icon-lg icon-plus"></i> Add new post</a>
                 <div class="divider"></div>
+                <div class="float-right">{m(Search)}</div>
               </div>
               <div>
                 <div class="columns">
