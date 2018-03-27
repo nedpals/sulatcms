@@ -11,7 +11,7 @@ export default {
           {
           store.state.posts.map((post) => {
             return [
-              <li class="nav-item"><a href={"/edit/" + post.filename} oncreate={m.route.link}>{post.filename}</a></li>
+              <li class="nav-item"><a href={`/edit/${post.filename}`} oncreate={m.route.link}>{post.filename}</a></li>
             ]
           })
           }
