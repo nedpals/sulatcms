@@ -3,7 +3,7 @@ import store from '../store'
 export default {
   view() {
     return (
-      <div class="column p-2 col-2 bg-gray" style="height:100vh;">
+      <div class="column p-2 bg-gray" style="height:100vh;">
         <a class="btn btn-primary btn-lg btn-block" href="/new" oncreate={m.route.link}>New</a>
         <ul class="nav">
           {
