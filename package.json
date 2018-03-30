@@ -5,7 +5,8 @@
   "main": "client/index.js",
   "scripts": {
     "test": "",
-    "dev": "poi --config build/poi.config.js"
+    "dev": "poi --config build/poi.config.js",
+    "build": "poi build --config build/poi.config.js"
   },
   "author": "Ned Palacios",
   "license": "MIT",
