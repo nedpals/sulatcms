@@ -3,24 +3,8 @@ import Search from '../components/Search'
 import Post from '../store'
 
 export default {
-  posts: [
-    {
-      title: 'Post 1',
-      date: '2010-01-01',
-      author: 'Ned Palacios',
-      tags: ['hello', 'world'],
-      filename: 'post-1.md',
-      content: '# Hello world!'
-    },
-    {
-      title: 'Post 2',
-      date: '2010-01-01',
-      author: 'Ned Palacios',
-      tags: ['hello', 'world'],
-      filename: 'post-2.md',
-      content: '## hello rin, in h2'
-    }
-  ],
+  loading: false,
+  searchText: "",
   view(vnode) {
     return (
       <div class="container grid-lg">
@@ -38,27 +22,26 @@ export default {
                     {vnode.state.loading ? (<div class="loading loading-lg text-center"></div>)
                       : (Post.state.posts.length > 0 ?
                         Post.state.posts.map((post) => {
-                      return [
-                        <div key={post.filename}>
-                          <h2 style="margin-bottom:0;">
-                            <a href={"/edit/" + post.filename} oncreate={m.route.link}>{post.title}</a>
-                          </h2>
-                          <p class="text-uppercase text-gray">By {post.author} Filed under: {post.tags.join(', ')}</p>
-                        </div>
-                      ]
+                          return [
+                            <div key={post.filename}>
+                              <h2 style="margin-bottom:0;">
+                                <a href={"/edit/" + post.filename} oncreate={m.route.link}>{post.title}</a>
+                              </h2>
+                              <p class="text-uppercase text-gray">By {post.author} Filed under: {post.tags.join(', ')}</p>
+                            </div>
+                          ]
                         }) : (
-                <div class="empty">
-                  <div class="empty-icon">
-                    <i class="icon icon-4x icon-mail"></i>
-                  </div>
-                  <p class="empty-title h5">You haven't write a single post!</p>
+                          <div class="empty">
+                            <div class="empty-icon">
+                              <i class="icon icon-4x icon-mail"></i>
+                            </div>
+                            <p class="empty-title h5">You haven't write a single post!</p>
                           </div>
                         ))
                     }
                   </div>
-                  </div>
                 </div>
-              ) : null}
+              </div>
               <div class="columns">
 
               </div>
