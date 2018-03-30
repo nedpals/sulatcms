@@ -46,7 +46,7 @@ export default {
     })
   },
   view(vnode) {
-    return m(OffCanvas, {customClass: "editor-view"}, (
+    return m(OffCanvas, {customClass: "editor-view", currentId: vnode.state.post.filename}, (
       <div class="container grid-md editor">
         <form class="form-horizonal columns">
           {Object.entries(vnode.state.post).map((fields) => {

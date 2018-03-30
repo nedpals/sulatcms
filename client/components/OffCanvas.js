@@ -21,7 +21,7 @@ export default {
                 </div>
 
                 <div class={`off-canvas-sidebar ${vnode.state.options.showMenu ? "active" : ""}`}>
-                    {m(FileView)}
+                    {m(FileView, {post_id: vnode.attrs.currentId})}
                 </div>
 
                 <button class="off-canvas-overlay" onclick={() => {this.toggleMenu()}}></button>
