@@ -1,5 +1,6 @@
 import FileView from '../components/FileView'
 import Search from '../components/Search'
+import Post from '../store'
 
 export default {
   posts: [
@@ -33,9 +34,10 @@ export default {
               <div class="divider"></div>
               <div>
                 <div class="columns">
-                  <div class="column p-1 m-2 col-12">
-                    {vnode.state.posts ?
-                    vnode.state.posts.map((post) => {
+                  <div class="column py-1 my-2 col-12">
+                    {vnode.state.loading ? (<div class="loading loading-lg text-center"></div>)
+                      : (Post.state.posts.length > 0 ?
+                        Post.state.posts.map((post) => {
                       return [
                         <div key={post.filename}>
                           <h2 style="margin-bottom:0;">
@@ -44,20 +46,16 @@ export default {
                           <p class="text-uppercase text-gray">By {post.author} Filed under: {post.tags.join(', ')}</p>
                         </div>
                       ]
-                    }) : null}
-                  </div>
-                </div>
-              </div>
-              {!vnode.state.posts ?
-              (
+                        }) : (
                 <div class="empty">
                   <div class="empty-icon">
                     <i class="icon icon-4x icon-mail"></i>
                   </div>
                   <p class="empty-title h5">You haven't write a single post!</p>
-                  <p class="empty-subtitle">Click the button to express what's on your mind</p>
-                  <div class="empty-action">
-                    <button class="btn btn-primary">Add a post</button>
+                          </div>
+                        ))
+                    }
+                  </div>
                   </div>
                 </div>
               ) : null}
