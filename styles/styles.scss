@@ -1,0 +1,54 @@
+@import "node_modules/spectre.css/src/variables";
+
+.sulat-navbar {
+    border-bottom: 1px solid $border-color;
+}
+
+.editor {
+    margin-top: 3rem;
+}
+
+.editor-view.off-canvas {
+    .off-canvas-content {
+        padding: 0;
+    }
+    .off-canvas-toggle {
+        width: 98.6%;
+
+        button.btn {
+            margin-right: 0.4rem !important;
+        }
+    }
+}
+
+.editor .CodeMirror {
+    border: none;
+}
+
+.editor .editor-toolbar {
+    border: 1px solid #bbb;
+    border-radius: 4px;
+}
+
+.editor > .form-horizonal > .form-group label {
+    text-transform: uppercase;
+    color: $gray-color-light;
+}
+
+.editor .form-input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+
+    &.title-field {
+        font-size: 2rem;
+        height: 3rem;
+        padding: 0.45rem 0.6rem;
+    }
+}
+
+.login-page {
+    .login-options button {
+        margin-top: 0.5rem;
+    }
+}
