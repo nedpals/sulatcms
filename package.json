@@ -12,14 +12,19 @@
   "dependencies": {
     "date-fns": "^1.29.0",
     "mithril": "^1.1.6",
+    "netlify-auth-providers": "https://github.com/netlify/netlify-auth-providers/",
+    "pluggable.js": "^2.0.0",
     "simplemde": "^1.11.2",
     "spectre.css": "^0.5.1"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",
     "exports-loader": "^0.7.0",
+    "glob-all": "^3.1.0",
     "node-sass": "^4.7.2",
     "poi": "^9.6.13",
+    "purify-css": "^1.2.5",
+    "purifycss-webpack": "^0.7.0",
     "sass-loader": "^6.0.6"
   }
 }
