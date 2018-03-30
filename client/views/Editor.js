@@ -54,7 +54,7 @@ export default {
               <div
                 class={`form-group column ${(fields[0] === "title" ? "col-12 col-sm-12" :
                   (fields[0] === "content" ? "col-12 col-sm-12" :
-                    `col-${Math.floor(12 / (Object.keys(vnode.state.post).length - 2))} col-sm-12`))}`}>
+                    `col-${Math.floor(12 / (Object.keys(vnode.state.post).length - 2))} col-md-${Math.floor(12 / (Object.keys(vnode.state.post).length - 4))} col-sm-12`))}`}>
                 {fields[0] === "content" ?
                   (
                     <textarea id="cms-editor"></textarea>
