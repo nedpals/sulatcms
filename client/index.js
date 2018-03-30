@@ -1,29 +1,27 @@
-const m = require('mithril')
 import "spectre.css/src/spectre.scss"
 import "spectre.css/src/spectre-exp.scss"
 import "spectre.css/src/spectre-icons.scss"
-import "../static/styles.scss"
-import Home from './views/Home.js'
-import Login from './views/Login.js'
-import Editor from './views/Editor.js'
-import App from './components/App'
+import "../styles/styles.scss"
+import routes from "./routes"
+import pluggable from "pluggable.js/src/pluggable.js"
 
-const app = document.getElementById("app")
+// (function () {
+//     const mod = this
+//     mod.initialize = () => {
 
-const v = (view, layout) => {
-    let rendered = {
-        render() {
-            return m((layout ? layout : App), m(view))
-        }
-    }
+//     }
 
-    return rendered
-}
+//     mod.registerPlugin = (name, plugin) => {
+//         mod.pluginSocket.registerPlugin(name, plugin)
+//     }
 
-m.route(app, '/', {
-    '/': v(Home),
-    '/login': Login,
-    '/edit/:key': Editor,
-    '/new': Editor
-})
+//     pluggable.enable(mod)
 
+//     const _public = {
+//         'initialize': mod.initialize,
+//         'registerPlugin': mod.registerPlugin
+//     }
+
+//     window.sulat = _public
+//     return _public
+// }())
