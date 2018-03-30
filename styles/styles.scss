@@ -1,5 +1,9 @@
 @import "node_modules/spectre.css/src/variables";
 
+.sulat-navbar {
+    border-bottom: 1px solid $border-color;
+}
+
 .editor {
     margin-top: 3rem;
 }
@@ -8,8 +12,12 @@
     .off-canvas-content {
         padding: 0;
     }
-    .off-canvas-toggle button.btn {
-        margin-right: 0.4rem !important;
+    .off-canvas-toggle {
+        width: 98.6%;
+
+        button.btn {
+            margin-right: 0.4rem !important;
+        }
     }
 }
 
@@ -24,7 +32,7 @@
 
 .editor > .form-horizonal > .form-group label {
     text-transform: uppercase;
-    color: $gray-color;
+    color: $gray-color-light;
 }
 
 .editor .form-input {
@@ -36,5 +44,11 @@
         font-size: 2rem;
         height: 3rem;
         padding: 0.45rem 0.6rem;
+    }
+}
+
+.login-page {
+    .login-options button {
+        margin-top: 0.5rem;
     }
 }
