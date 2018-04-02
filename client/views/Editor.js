@@ -1,6 +1,6 @@
 import SimpleMDE from 'simplemde'
 import "simplemde/dist/simplemde.min.css"
-import store from "../store"
+import store from "../store/post"
 import format from "date-fns/format"
 import OffCanvas from "../components/OffCanvas"
 

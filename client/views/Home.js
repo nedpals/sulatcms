@@ -1,10 +1,13 @@
 import FileView from '../components/FileView'
 import Search from '../components/Search'
-import Post from '../store'
+import Post from '../store/post'
 
 export default {
   loading: false,
   searchText: "",
+  setSearch(s) { 
+    this.searchText = s
+  },
   view(vnode) {
     return (
       <div class="container grid-lg">
@@ -13,14 +16,24 @@ export default {
             <div class="container">
               <div class="clearfix">
                 <a href="/new" oncreate={m.route.link} class="btn btn-primary float-left"><i class="icon icon-lg icon-plus"></i> Add new post</a>
-                <div class="float-right">{m(Search)}</div>
+                <div class="float-right">
+                  <div class="has-icon-left">
+                    <input type="text" 
+                           class="form-input" 
+                           placeholder="..." 
+                           value={vnode.state.searchText} 
+                           oninput={m.withAttr("value", (s) => {this.setSearch(s)})} 
+                    />
+                    <i class="form-icon icon icon-search"></i>
+                  </div>
+                </div>
               </div>
               <div class="divider"></div>
               <div>
                 <div class="columns">
                   <div class="column py-1 my-2 col-12">
                     {vnode.state.loading ? (<div class="loading loading-lg text-center"></div>)
-                      : (Post.state.posts.length > 0 ?
+                      : (Post.state.posts.length >= 1 ?
                         Post.state.posts.map((post) => {
                           return [
                             <div key={post.filename}>
