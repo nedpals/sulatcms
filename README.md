@@ -1,11 +1,14 @@
 > **ATTENTION**: This is currently in development. Please wait for the stable release.
 
-# SulatCMS
+<h1 style="text-align:center;"><img style="width:30%;" src="./static/logo.png"/></h1>
+<p style="text-align:center;">
 Super simple platform-agnostic headless CMS made for you.
-
+<br/>
+<br/>
 Sulat was built to adapt to the demands of the user and to any kind of SSG's (Static Site Generator) with it's extensibility built in mind.
-
+<br/>
 It's name was originated from the Filipino word meaning "to write".
+</p>
 
 ## Features
 1. **Extensible** - Want to use Gitlab as gateway? Add a custom shortcode/widget? You can make a plugin for it. Sulat uses [pluggable.js](https://github.com/conversejs/pluggablejs) to make Sulat your own CMS.
