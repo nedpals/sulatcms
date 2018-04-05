@@ -9,6 +9,13 @@ module.exports = (options, req) => ({
     entry: './client/index.js',
     library: process.env.NODE_ENV === "production" ? 'sulat-cms': undefined,
     transformModules: ['netlify-auth-providers', 'pluggable.js'],
+    presets: [
+      require("poi-preset-bundle-report"),
+      require('poi-preset-webpackmonitor')({
+        launch: true,
+        port: 3001
+      })
+    ],
     webpack(config) {
       config.plugins.push(new webpack.ProvidePlugin({
         m: 'mithril'
