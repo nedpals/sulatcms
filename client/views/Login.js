@@ -1,5 +1,4 @@
 import Auth from "../store/auth"
-
 export default {
   providers: [
     {
@@ -25,7 +24,7 @@ export default {
             <div class="panel bg-white">
               <div class="panel-header">
                 <div class="panel-title text-center">
-                  <h1>Welcome</h1>
+                  <h1><img src="../static/logo.png" class="img-responsive" /></h1>
                 </div>
               </div>
               <div class="panel-footer login-options">
