@@ -1,4 +1,3 @@
-const m = require('mithril')
 import Home from '../views/Home.js'
 import Login from '../views/Login.js'
 import Editor from '../views/Editor.js'
