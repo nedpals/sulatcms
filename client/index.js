@@ -3,7 +3,6 @@ import "spectre.css/src/spectre-exp.scss"
 import "spectre.css/src/spectre-icons.scss"
 import "../styles/styles.scss"
 import routes from "./routes"
-import pluggable from "pluggable.js/src/pluggable.js"
 
 // (function () {
 //     const mod = this
