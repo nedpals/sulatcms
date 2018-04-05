@@ -24,7 +24,7 @@ export default {
             <div class="panel bg-white">
               <div class="panel-header">
                 <div class="panel-title text-center">
-                  <h1><img src="../static/logo.png" class="img-responsive" /></h1>
+                  <h1 class="my-1"><img src="../static/logo.png" class="img-responsive" />Welcome</h1>
                 </div>
               </div>
               <div class="panel-footer login-options">
