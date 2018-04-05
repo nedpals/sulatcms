@@ -4,7 +4,10 @@ const glob = require('glob-all')
 const path = require('path')
 
 module.exports = (options, req) => ({
+    moduleName: 'sulat',
+    format: 'umd',
     entry: './client/index.js',
+    library: process.env.NODE_ENV === "production" ? 'sulat-cms': undefined,
     transformModules: ['netlify-auth-providers', 'pluggable.js'],
     webpack(config) {
       config.plugins.push(new webpack.ProvidePlugin({
