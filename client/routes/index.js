@@ -2,23 +2,29 @@ import Home from '../views/Home.js'
 import Login from '../views/Login.js'
 import Editor from '../views/Editor.js'
 import App from '../components/App'
+import Auth from '../store/auth'
 
-const app = document.getElementById("app")
-
-const v = (view, layout) => {
-    let rendered = {
-        render() {
-            return m((layout ? layout : App), m(view))
+export default function initRoutes(mount) {
+    const v = (view, layout) => {
+        let rendered = {
+            render() {
+                return m((layout ? layout : App), m(view))
+            }
         }
+
+        return rendered
     }
 
-    return rendered
+    return m.route(mount, '/', {
+        '/': {
+            onmatch() {
+                if (!Auth.state.loggedIn) m.route.set('/login')
+                else return v(Home)
+            }
+        },
+        '/login': Login,
+        '/edit/:key': Editor,
+        '/new': Editor
+    })
 }
-
-export default m.route(app, '/', {
-    '/': v(Home),
-    '/login': Login,
-    '/edit/:key': Editor,
-    '/new': Editor
-})
 
