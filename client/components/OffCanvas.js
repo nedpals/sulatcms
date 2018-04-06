@@ -20,10 +20,13 @@ export default {
                         </a>
                     </div>
                     <div class="float-right">
-                        <a href="/" class="btn btn-primary" oncreate={m.route.link}>
+                        <button class="btn btn-error" onclick={() => { vnode.attrs.actions.delete() }}>
+                            <i class="icon icon-delete"></i>
+                        </button>
+                        <button class="btn btn-primary" onclick={() => { vnode.attrs.actions.save() }}>
                             <i class="icon icon-check"></i>&nbsp;
                              Save
-                        </a>
+                        </button>
                     </div>
                 </div>
 
