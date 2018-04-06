@@ -1,4 +1,4 @@
-import store from '../store'
+import store from '../store/post'
 
 export default {
   view(vnode) {
@@ -10,7 +10,9 @@ export default {
           store.state.posts.map((post) => {
             return [
               <li class={`nav-item ${post.filename === vnode.attrs.post_id ? "active" : ""}`}>
-                <a href={`/edit/${post.filename}`} oncreate={m.route.link}>{post.filename}</a>
+                <a href={`/edit/${post.filename}`} oncreate={m.route.link}>
+                  {post.filename}
+                </a>
               </li>
             ]
           })
