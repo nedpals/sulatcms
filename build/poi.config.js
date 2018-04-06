@@ -4,10 +4,10 @@ const glob = require('glob-all')
 const path = require('path')
 
 module.exports = (options, req) => ({
-    moduleName: 'sulat',
     format: 'umd',
+    moduleName: 'sulatcms',
     entry: './client/index.js',
-    library: process.env.NODE_ENV === "production" ? 'sulat-cms': undefined,
+    library: process.env.NODE_ENV === "production" ? 'sulatcms': undefined,
     transformModules: ['netlify-auth-providers', 'pluggable.js'],
     presets: [
       require("poi-preset-bundle-report"),
@@ -24,7 +24,8 @@ module.exports = (options, req) => ({
         paths: glob.sync([
           path.join(__dirname, './index.html'),
           path.join(__dirname, './../client/**/*.js')
-        ])
+        ]),
+        minimize: true
       }))
       return config
     }
