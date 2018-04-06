@@ -5,17 +5,18 @@
   "main": "client/index.js",
   "scripts": {
     "test": "",
-    "dev": "poi --webpackmonitor --config build/poi.config.js",
-    "build": "poi build --config build/poi.config.js",
+    "dev": "poi --config build/poi.config.js",
+    "build": "poi build --webpackmonitor  --config build/poi.config.js",
     "analyze": "poi build --analyze --config build/poi.config.js"
   },
   "author": "Ned Palacios",
   "license": "MIT",
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^1.0.0-beta.1",
     "date-fns": "^1.29.0",
     "mithril": "^1.1.6",
     "netlify-auth-providers": "https://github.com/netlify/netlify-auth-providers/",
-    "pluggable.js": "^2.0.0",
+    "pluggable.js": "https://github.com/nedpals/pluggable.js",
     "simplemde": "^1.11.2",
     "spectre.css": "^0.5.1"
   },
