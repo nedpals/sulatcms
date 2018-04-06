@@ -1,8 +1,34 @@
-import "spectre.css/src/spectre.scss"
-import "spectre.css/src/spectre-exp.scss"
-import "spectre.css/src/spectre-icons.scss"
 import "../styles/styles.scss"
-import routes from "./routes"
+import initializeRoutes from "./routes"
+import Auth from "./store/auth"
+import Global from "./store"
+// import pluggable from "pluggable.js/src/pluggable.js"
+
+export function initCMS(mount, options) {
+    document.title = "SulatCMS"
+    initializeRoutes(mount || arguments[0] || document.getElementById('app'))
+    options = arguments[1]
+    Auth.settings = {
+        provider: options.auth.provider,
+        netlify_id: options.auth.netlify_id
+    }
+    Global.domain = options.domain
+    Global.git = {
+        domain: options.domain,
+        git: {
+            user: '',
+            repo: options.repo
+        }
+    }
+}
+
+if (process.env.NODE_ENV === "development") {
+    initCMS(document.getElementById("sulat"), {
+        auth: {
+            netlify_id: "7ed5abbf-556c-4bae-982c-225b15c3b997",
+            provider: "gitlab"
+        }
+    }) }
 
 // (function () {
 //     const mod = this
