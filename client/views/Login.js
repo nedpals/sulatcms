@@ -1,20 +1,10 @@
 import Auth from "../store/auth"
 export default {
-  providers: [
-    {
-      type: "github",
-      scope: "user"
-    },
-    {
-      type: "gitlab",
-      scope: "user"
-    }
-  ],
-  login(provider, scope) {
-    Auth.authenticate(provider, scope, () => {
-      console.log(Auth.state.data)
-      m.route.set('/')
-    })
+  login(provider) {
+      Auth.authenticate(Auth.settings.provider, () => {
+        console.log(Auth.state.data)
+        m.route.set('/')
+      })
   },
   view(vnode) {
     return (
@@ -29,11 +19,7 @@ export default {
               </div>
               <div class="panel-footer login-options">
                 <div class="divider text-center" data-content="LOGIN WITH"></div>
-                {vnode.state.providers.map((provider) => {
-                  return (
-                    <button class="btn btn-block btn-lg btn-primary" onclick={() => { this.login(provider.type, provider.scope) }}>{provider.type}</button>
-                  )
-                })}
+                <button class="btn btn-block btn-lg btn-primary" onclick={() => { this.login(Auth.settings.provider) }}>{Auth.settings.provider}</button>
               </div>
             </div>
           </div>

@@ -3,16 +3,22 @@ import Authenticator from "netlify-auth-providers/src/netlify"
 const Auth = {
     state: {
         error: "",
-        data: {}
+        loggedIn: false,
+        data: {},
+        user: {}
+    },
+    settings: {
+        provider: '',
+        netlify_id: '',
     },
     init() {
-        return new Authenticator({site_id: "nedpals-blog"})
+        return new Authenticator({site_id: this.settings.netlify_id})
     },
-    authenticate(provider, scope, callback) {
-        this.init().authenticate({provider: provider, scope: scope}, (err, data) => {
+    authenticate(provider, callback) {
+        this.init().authenticate({provider: provider}, (err, data) => {
             if (err) { this.state.error = err }
             this.state.data = data
-            callback
+            callback()
         })
     }
 }
