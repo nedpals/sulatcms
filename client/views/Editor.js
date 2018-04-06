@@ -1,5 +1,4 @@
-import SimpleMDE from 'simplemde'
-import "simplemde/dist/simplemde.min.css"
+const SimpleMDE = require('simplemde/dist/simplemde.min.js')
 import store from "../store/post"
 import format from "date-fns/format"
 import OffCanvas from "../components/OffCanvas"
@@ -46,7 +45,7 @@ export default {
     })
   },
   view(vnode) {
-    return m(OffCanvas, {customClass: "editor-view", currentId: vnode.state.post.filename}, (
+    return m(OffCanvas, {customClass: "editor-view", currentId: vnode.state.post.filename, actions: { save: () => { store.actions.savePost() }, delete: () => { store.actions.deletePost() } }}, (
       <div class="container grid-md editor">
         <form class="form-horizonal columns">
           {Object.entries(vnode.state.post).map((fields) => {
@@ -54,7 +53,11 @@ export default {
               <div
                 class={`form-group column ${(fields[0] === "title" ? "col-12 col-sm-12" :
                   (fields[0] === "content" ? "col-12 col-sm-12" :
-                    `col-${Math.floor(12 / (Object.keys(vnode.state.post).length - 2))} col-md-${Math.floor(12 / (Object.keys(vnode.state.post).length - 4))} col-sm-12`))}`}>
+                    `col-${Math.floor(12 / (Object.keys(vnode.state.post).length - (Object.keys(vnode.state.post).length > 6 ? 3 : 2)))} 
+                     col-md-${Math.floor(12 / (Object.keys(vnode.state.post).length - 4))} 
+                     col-sm-12`))}`
+                }
+              >
                 {fields[0] === "content" ?
                   (
                     <textarea id="cms-editor"></textarea>
