@@ -1,3 +1,6 @@
+import Auth from '../store/auth'
+import Global from '../store'
+
 export default {
     menuActive: false,
     toggleMenu() {
@@ -7,10 +10,12 @@ export default {
         return (
             <header class="navbar sulat-navbar px-2 py-1">
                 <section class="navbar-section">
-                    <span class="p-2">domain.tld</span>
+                    <span class="p-2">{Global.domain}</span>
                 </section>
                 <section class="navbar-center">
-                    <h1 class="m-0">Sulat</h1>
+                    <h1 class="m-0" style="text-align:center;">
+                        <img src="../static/logo.png" class="img-responsive" style="width:18%;max-width:18%;margin:auto;" />
+                    </h1>
                 </section>
                 <section class="navbar-section">
                     <div class={`dropdown dropdown-right ${vnode.state.menuActive ? "active" : ""}`}>
@@ -32,19 +37,11 @@ export default {
                                 </div>
                             </li>
                             <li class="divider"></li>
-                            <li class="menu-item">
-                                <div class="menu-badge">
-                                <label class="label label-primary">2</label>
-                                </div>
-                                <a href="#menus" class="active">
-                                My profile
-                                </a>
-                            </li>
-                            <li class="menu-item">
+                            {/* <li class="menu-item">
                                 <a href="#menus">
                                 Settings
                                 </a>
-                            </li>
+                            </li> */}
                             <li class="menu-item">
                                 <a href="#menus">
                                 Logout
