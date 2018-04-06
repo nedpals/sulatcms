@@ -1,4 +1,8 @@
 @import "node_modules/spectre.css/src/variables";
+@import "node_modules/spectre.css/src/spectre";
+@import "node_modules/spectre.css/src/spectre-exp";
+@import "node_modules/spectre.css/src/spectre-icons";
+@import "node_modules/simplemde/dist/simplemde.min";
 
 .sulat-navbar {
     border-bottom: 1px solid $border-color;
@@ -15,7 +19,7 @@
     .off-canvas-toggle {
         width: 98.6%;
 
-        button.btn {
+        .btn {
             margin-right: 0.4rem !important;
         }
     }
