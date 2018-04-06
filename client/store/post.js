@@ -7,6 +7,7 @@ Post.state = {
             author: 'Ned Palacios',
             tags: ['hello', 'world'],
             filename: 'post-1.md',
+            photo: 'post-1.md',
             content: '# Hello world!'
         },
         {
@@ -20,18 +21,16 @@ Post.state = {
     ]
 }
 
-Post.mutations = {
-    changeData(data) {
-
-    }
-}
-
 Post.actions = {
-    incrementAsync({ commit }) {
-        setTimeout(() => {
-            commit('INCREMENT')
-        }, 200)
-    }
+    savePost(filename, payload) {},
+    deletePost(filename) {
+        let confirmDelete = confirm("You are about to delete this post.")
+        if (confirmDelete) {
+            alert("Post Deleted")
+            m.route.set("/")
+        }
+    },
+    refreshList() {}
 }
 
 Post.getters = {
