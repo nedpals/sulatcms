@@ -1,5 +1,6 @@
 import Auth from '../store/auth'
 import Global from '../store'
+import logo from "../../static/logo.png"
 
 export default {
     menuActive: false,
@@ -14,7 +15,7 @@ export default {
                 </section>
                 <section class="navbar-center">
                     <h1 class="m-0" style="text-align:center;">
-                        <img src="../static/logo.png" class="img-responsive" style="width:18%;max-width:18%;margin:auto;" />
+                        <img src={logo} class="img-responsive" style="width:18%;max-width:18%;margin:auto;" />
                     </h1>
                 </section>
                 <section class="navbar-section">
