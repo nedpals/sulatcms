@@ -8,17 +8,16 @@ export function initCMS(mount, options) {
     document.title = "SulatCMS"
     initializeRoutes(mount || arguments[0] || document.getElementById('app'))
     options = arguments[1]
+    const repo = options.repo.slice("/")
+
     Auth.settings = {
         provider: options.auth.provider,
         netlify_id: options.auth.netlify_id
     }
     Global.domain = options.domain
     Global.git = {
-        domain: options.domain,
-        git: {
-            user: '',
-            repo: options.repo
-        }
+        user: repo[0],
+        repo: repo[1]
     }
 }
 
@@ -27,8 +26,10 @@ if (process.env.NODE_ENV === "development") {
         auth: {
             netlify_id: "7ed5abbf-556c-4bae-982c-225b15c3b997",
             provider: "gitlab"
-        }
-    }) }
+        },
+        repo: "petreanvoice/db"
+    }) 
+}
 
 // (function () {
 //     const mod = this
