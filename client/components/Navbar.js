@@ -21,8 +21,7 @@ export default {
                 <section class="navbar-section">
                     <div class={`dropdown dropdown-right ${vnode.state.menuActive ? "active" : ""}`}>
                         <button onclick={() => {this.toggleMenu()}} class="btn btn-link p-0" tabindex="0">
-                            <span class="mr-2">User</span>
-                            <figure class="avatar p-2" data-initial="YZ" style="background-color: #5755d9;"></figure>
+                            <span class="mr-2">{Auth.state.user.handle}</span>
                             <i class="icon icon-caret"></i>
                         </button>
 
@@ -30,10 +29,10 @@ export default {
                             <li class="menu-item">
                                 <div class="tile tile-centered">
                                     <div class="tile-icon">
-                                        <img src="img/avatar-4.png" class="avatar" alt="Avatar" />
+                                        <img src={`${Auth.state.user.avatar}`} class="avatar" alt={`${Auth.state.user.name.full} (${Auth.state.user.handle})`} />
                                     </div>
                                     <div class="tile-content">
-                                        Steve Rogers
+                                        {Auth.state.user.name.full}
                                     </div>
                                 </div>
                             </li>
