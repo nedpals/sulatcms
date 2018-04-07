@@ -4,7 +4,6 @@ import logo from "../../static/logo.png"
 export default {
   login(provider) {
       Auth.authenticate(Auth.settings.provider, () => {
-        console.log(Auth.state.data)
         m.route.set('/')
       })
   },
