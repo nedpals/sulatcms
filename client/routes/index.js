@@ -16,12 +16,7 @@ export default function initRoutes(mount) {
     }
 
     return m.route(mount, '/', {
-        '/': {
-            onmatch() {
-                if (!Auth.state.loggedIn) m.route.set('/login')
-                else return v(Home)
-            }
-        },
+        '/': v(Home),
         '/login': Login,
         '/edit/:key': Editor,
         '/new': Editor
