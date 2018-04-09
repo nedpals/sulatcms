@@ -8,17 +8,13 @@ export function initCMS(mount, options) {
     document.title = "SulatCMS"
     initializeRoutes(mount || arguments[0] || document.getElementById('app'))
     options = arguments[1]
-    const repo = options.repo.slice("/")
 
     Auth.settings = {
         provider: options.auth.provider,
         netlify_id: options.auth.netlify_id
     }
     Global.domain = options.domain
-    Global.git = {
-        user: repo[0],
-        repo: repo[1]
-    }
+    Global.repo = options.repo
 }
 
 if (process.env.NODE_ENV === "development") {
