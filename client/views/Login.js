@@ -2,9 +2,10 @@ import Auth from "../store/auth"
 import logo from "../../static/logo.png"
 
 export default {
-  login(provider) {
+  login() {
       Auth.authenticate(Auth.settings.provider, () => {
-        m.route.set('/')
+        Auth.state.loggedIn = true
+        m.route.set('/home')
       })
   },
   view(vnode) {
@@ -20,7 +21,7 @@ export default {
               </div>
               <div class="panel-footer login-options">
                 <div class="divider text-center" data-content="LOGIN WITH"></div>
-                <button class="btn btn-block btn-lg btn-primary" onclick={() => { this.login(Auth.settings.provider) }}>{Auth.settings.provider}</button>
+                <button class="btn btn-block btn-lg btn-primary" onclick={() => { this.login() }}>{Auth.settings.provider}</button>
               </div>
             </div>
           </div>
