@@ -1,8 +1,13 @@
-import postData from "../mocks/post-data";
+import postData from "../mocks/post-data"
+import { gitApi, gitDo } from "../modules/git"
+import Auth from "./auth"
+import fm from "front-matter"
 
 const Post = {}
+
 Post.state = {
-    posts: postData
+    posts: [],
+    error: {}
 }
 
 Post.actions = {
@@ -14,7 +19,37 @@ Post.actions = {
             m.route.set("/")
         }
     },
-    refreshList() {}
+    refreshList() {
+        gitDo(Auth.settings.provider, Auth.state.data.token, gitApi.endpoints["gitlab"].fetch("path", {
+            path: "articles"
+        }))
+        .then((files) => {
+            const postsArray = []
+            files.map(file => {
+                gitDo(Auth.settings.provider, Auth.state.data.token, gitApi.endpoints["gitlab"].fetchFileRaw(file.id))
+                .then((fileContents) => {
+                    if (fm.test(fileContents)) {
+                        const parsedFile = fm(fileContents)
+                        const fileObj = Object.assign(parsedFile.attributes, {
+                            filename: file.name,
+                            contents: parsedFile.body
+                        })
+                        postsArray.push(fileObj)
+                    } else {
+                        postsArray.push({
+                            filename: file.name,
+                            contents: fileContents
+                        })
+                    }
+                })
+            })
+            console.log(postsArray)
+            Post.state.posts = postsArray
+        })
+        .catch((err) => {
+            Post.state.error = err
+        })
+    }
 }
 
 Post.getters = {
