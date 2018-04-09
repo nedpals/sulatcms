@@ -1,6 +1,6 @@
 {
   "name": "sulatcms",
-  "version": "0.1.0",
+  "version": "0.1.0-alpha",
   "description": "Super simple platorm-agnostic cms",
   "main": "client/index.js",
   "scripts": {
@@ -12,10 +12,12 @@
   "author": "Ned Palacios",
   "license": "MIT",
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^1.0.0-beta.1",
     "date-fns": "^1.29.0",
+    "front-matter": "^2.3.0",
     "mithril": "^1.1.6",
     "netlify-auth-providers": "https://github.com/netlify/netlify-auth-providers/",
+    "pell": "^1.0.4",
+    "pen": "https://github.com/sofish/pen",
     "pluggable.js": "https://github.com/nedpals/pluggable.js",
     "simplemde": "^1.11.2",
     "spectre.css": "^0.5.1"
