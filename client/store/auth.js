@@ -1,5 +1,5 @@
 import Authenticator from "netlify-auth-providers/src/netlify"
-import { defaults } from "../modules/git";
+import { gitApi } from "../modules/git";
 
 const Auth = {
     state: {
@@ -27,19 +27,17 @@ const Auth = {
         netlify_id: '',
     },
     init() {
-        return new Authenticator({site_id: this.settings.netlify_id})
+        return new Authenticator({ site_id: this.settings.netlify_id })
     },
     authenticate(provider, callback) {
-        this.init().authenticate({provider: provider, scopes: defaults[provider].scopes }, (err, data) => {
+        this.init().authenticate({ provider: provider, scope: gitApi.defaults[provider].scopes }, (err, data) => {
             if (err) { this.state.error = err }
             this.state.data = data
             callback()
             m.request({
                 method: "GET",
-                url: `${"https://gitlab.com/api/v4/"}user`,
-                headers: {
-                    'Authorization': 'Bearer ' + this.state.data.token
-                }
+                url: `${gitApi.defaults[provider].base_url}/user`,
+                headers: gitApi.defaults[provider].headers(data.token)
             })
             .then((currentUser) => {
                 this.state.loggedIn = true
