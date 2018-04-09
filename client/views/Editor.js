@@ -1,4 +1,4 @@
-const SimpleMDE = require('simplemde/dist/simplemde.min.js')
+import SimpleMDE from "simplemde"
 import store from "../store/post"
 import format from "date-fns/format"
 import OffCanvas from "../components/OffCanvas"
@@ -10,7 +10,7 @@ export default {
     author: '',
     tags: [],
     filename: '',
-    content: ''
+    contents: ''
   },
   setContent(content) {
     this.post.content = content
@@ -22,7 +22,7 @@ export default {
     vnode.state.post = store.state.posts.find(post => post.filename === vnode.attrs.key) || vnode.state.post
   },
   oncreate(vnode) {
-    const md = this.initEditor(document.getElementById("cms-editor"), vnode.state.post.content)
+    const md = this.initEditor(document.getElementById("cms-editor"), vnode.state.post.contents)
     md.codemirror.focus()
     md.codemirror.setCursor(100)
     md.codemirror.on("change", () => {
@@ -52,13 +52,13 @@ export default {
             return (
               <div
                 class={`form-group column ${(fields[0] === "title" ? "col-12 col-sm-12" :
-                  (fields[0] === "content" ? "col-12 col-sm-12" :
+                  (fields[0] === "contents" ? "col-12 col-sm-12" :
                     `col-${Math.floor(12 / (Object.keys(vnode.state.post).length - (Object.keys(vnode.state.post).length > 6 ? 3 : 2)))} 
                      col-md-${Math.floor(12 / (Object.keys(vnode.state.post).length - 4))} 
                      col-sm-12`))}`
                 }
               >
-                {fields[0] === "content" ?
+                {fields[0] === "contents" ?
                   (
                     <textarea id="cms-editor"></textarea>
                   ) : (
