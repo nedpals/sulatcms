@@ -12,6 +12,7 @@
   "author": "Ned Palacios",
   "license": "MIT",
   "dependencies": {
+    "babel-plugin-wildcard": "^5.0.0",
     "date-fns": "^1.29.0",
     "front-matter": "^2.3.0",
     "mithril": "^1.1.6",
@@ -32,6 +33,7 @@
     "poi-preset-webpackmonitor": "^1.0.0",
     "purify-css": "^1.2.5",
     "purifycss-webpack": "^0.7.0",
-    "sass-loader": "^6.0.6"
+    "sass-loader": "^6.0.6",
+    "semantic-release": "^15.1.7"
   }
 }
