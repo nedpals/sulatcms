@@ -25,23 +25,27 @@ Post.actions = {
         }))
         .then((files) => {
             const postsArray = []
-            files.map(file => {
-                gitDo(Auth.settings.provider, Auth.state.data.token, gitApi.endpoints["gitlab"].fetchFileRaw(file.id))
-                .then((fileContents) => {
-                    if (fm.test(fileContents)) {
-                        const parsedFile = fm(fileContents)
-                        const fileObj = Object.assign(parsedFile.attributes, {
-                            filename: file.name,
-                            contents: parsedFile.body
-                        })
-                        postsArray.push(fileObj)
-                    } else {
-                        postsArray.push({
-                            filename: file.name,
-                            contents: fileContents
-                        })
-                    }
-                })
+            files.forEach(file => {
+              gitDo(Auth.settings.provider, Auth.state.data.token, gitApi.endpoints["gitlab"].fetchFileRaw(file.id)).then(
+                fileContents => {
+                  if (fm.test(fileContents)) {
+                    const parsedFile = fm(fileContents);
+                    const fileObj = Object.assign(
+                      parsedFile.attributes,
+                      {
+                        filename: file.name,
+                        contents: parsedFile.body
+                      }
+                    )
+                    postsArray.push(fileObj);
+                  } else {
+                    postsArray.push({
+                      filename: file.name,
+                      contents: fileContents
+                    })
+                  }
+                }
+              )
             })
             console.log(postsArray)
             Post.state.posts = postsArray
