@@ -47,8 +47,7 @@ Post.actions = {
                 }
               )
             })
-            console.log(postsArray)
-            Post.state.posts = postsArray
+            Post.state.posts = postsArray.filter(posts => posts.filename.includes(".md"))
         })
         .catch((err) => {
             Post.state.error = err
