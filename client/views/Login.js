@@ -4,7 +4,6 @@ import logo from "../../static/logo.png"
 export default {
   login() {
       Auth.authenticate(Auth.settings.provider, () => {
-        Auth.state.loggedIn = true
         m.route.set('/home')
       })
   },
