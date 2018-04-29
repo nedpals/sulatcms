@@ -721,7 +721,7 @@ babel-plugin-transform-es2015-block-scoped-functions@^6.22.0:
   dependencies:
     babel-runtime "^6.22.0"
 
-babel-plugin-transform-es2015-block-scoping@^6.23.0, babel-plugin-transform-es2015-block-scoping@^6.24.1:
+babel-plugin-transform-es2015-block-scoping@^6.23.0, babel-plugin-transform-es2015-block-scoping@^6.24.1, babel-plugin-transform-es2015-block-scoping@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-es2015-block-scoping/-/babel-plugin-transform-es2015-block-scoping-6.26.0.tgz#d70f5299c1308d05c12f463813b0a09e73b1895f"
   dependencies:
@@ -4565,6 +4565,10 @@ nanomatch@^1.2.9:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
+navigo@^7.1.2:
+  version "7.1.2"
+  resolved "https://registry.yarnpkg.com/navigo/-/navigo-7.1.2.tgz#f543098ae5cbc5763b926742b5047ffb68a187e2"
+
 negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
@@ -5141,9 +5145,9 @@ pkg-dir@^2.0.0:
   dependencies:
     find-up "^2.1.0"
 
-"pluggable.js@https://github.com/nedpals/pluggable.js":
+pluggable.js@^2.0.0:
   version "2.0.0"
-  resolved "https://github.com/nedpals/pluggable.js#129a9a071f1f9546bc70e143f003a3cbe0d74177"
+  resolved "https://registry.yarnpkg.com/pluggable.js/-/pluggable.js-2.0.0.tgz#25926a9cf1e4eefef6c61fa8584461607a733843"
   dependencies:
     lodash "^4.17.4"
 
