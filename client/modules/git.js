@@ -27,60 +27,78 @@ const gitApi = {
         }
     },
     endpoints: {
-        gitlab: {
-            fetch(type, options) {
-                return {
-                    type: type,
-                    path: "/projects/:repo/repository/tree",
-                    data: {
-                        repo: encodeURIComponent(Global.repo),
-                        path: type === "path" ? options.path : undefined
-                    }
-                }
-            },
-            fetchFileRaw(blob_id) {
-                return {
-                    path: "/projects/:repo/repository/blobs/:blob_id/raw",
-                    data: {
-                        repo: encodeURIComponent(Global.repo),
-                        blob_id: blob_id
-                    },
-                    deserialize: (value) => { return value }
-                }
-            },
-            getCurrentUser() {
-              return m.request({
-                method: "GET",
-                url: `${gitApi.defaults[provider].base_url}/user`,
-                headers: gitApi.defaults[provider].headers(data.token)
-              })
-                .then((currentUser) => {
-                  Auth.state.user = {
-                    handle: currentUser.username,
-                    name: {
-                      first: currentUser.name.slice(" ")[0],
-                      last: currentUser.name.slice(" ")[1],
-                      full: currentUser.name
-                    },
-                    avatar: currentUser.avatar_url,
-                    email: currentUser.email,
-                    user_id: currentUser.id
-                  }
-                })
-            }
+      gitlab: {
+        fetch(type, options) {
+          return {
+              type: type,
+              path: "/projects/:repo/repository/tree",
+              data: {
+                  repo: encodeURIComponent(Global.repo),
+                  path: type === "path" ? options.path : undefined
+              }
+          }
         },
-        github: {
-            fetch(type, options) {
-                return {
-                    type: type,
-                    path: "",
-                    data: {}
-                }
-            },
-            push() {
-                path: "/"
+        fetchFileRaw(blob_id) {
+          return {
+              path: "/projects/:repo/repository/blobs/:blob_id/raw",
+              data: {
+                  repo: encodeURIComponent(Global.repo),
+                  blob_id: blob_id
+              },
+              deserialize: (value) => { return value }
+          }
+        },
+        createFile() {
+          return {
+            type: "POST",
+            path: "/projects/:repo/repository/files/:file",
+            data: {
+              branch: "",
+              content: "",
+              commit_message: ""
             }
+          }
+        },
+        updateFile() {
+          return {
+            type: "PATCH",
+            path: "/projects/:repo/repository/files/:file",
+            data: {
+              branch: "",
+              content: "",
+              commit_message: ""
+            }
+          }
+        },
+        delete(file) {
+          return {
+            type: "DELETE",
+            path: "/projects/:repo/repository/files/:file",
+            data: {
+              branch: 'master',
+              commit_message: 'Delete Article ' + file.name + ' by ME'
+            }
+          }
+        },
+        getCurrentUser() {
+          return {
+            url: `${gitApi.defaults[provider].base_url}/user`,
+            headers: gitApi.defaults[provider].headers(data.token)
+          }
         }
+      },
+      github: {
+        fetch(type, options) {
+          return {
+              type: type,
+              path: "",
+              data: {}
+          }
+        },
+        push() {
+            path: "/"
+        }
+      }
     }
 }
 
