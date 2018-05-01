@@ -13,45 +13,52 @@ Post.state = {
 Post.actions = {
     savePost(filename, payload) {},
     deletePost(filename) {
-        let confirmDelete = confirm("You are about to delete this post.")
-        if (confirmDelete) {
-            alert("Post Deleted")
-            m.route.set("/")
-        }
+      let confirmDelete = confirm("You are about to delete this post.")
+      if (confirmDelete) {
+          alert("Post Deleted")
+          m.route.set("/")
+      }
     },
     refreshList() {
-        gitDo(Auth.settings.provider, Auth.state.data.token, gitApi.endpoints["gitlab"].fetch("path", {
-            path: "articles"
-        }))
-        .then((files) => {
-            const postsArray = []
-            files.forEach(file => {
-              gitDo(Auth.settings.provider, Auth.state.data.token, gitApi.endpoints["gitlab"].fetchFileRaw(file.id)).then(
-                fileContents => {
-                  if (fm.test(fileContents)) {
-                    const parsedFile = fm(fileContents);
-                    const fileObj = Object.assign(
-                      parsedFile.attributes,
-                      {
-                        filename: file.name,
-                        contents: parsedFile.body
-                      }
-                    )
-                    postsArray.push(fileObj);
-                  } else {
-                    postsArray.push({
-                      filename: file.name,
-                      contents: fileContents
-                    })
+      gitDo(gitApi.endpoints["gitlab"].fetch("path", {
+          path: "articles"
+      }))
+      .then((files) => {
+        Post.state.posts = files.filter(file => {
+          return file.name.includes(".md")
+        }).map(file => {
+          let postObj = {}
+          gitDo(gitApi.endpoints["gitlab"].fetchFileRaw(file.id))
+          .then(
+            fileContents => {
+              let post = {}
+
+              if (fm.test(fileContents)) {
+                const parsedFile = fm(fileContents);
+                post = Object.assign(
+                  parsedFile.attributes,
+                  {
+                    filename: file.name,
+                    contents: parsedFile.body
                   }
+                )
+              } else {
+                post = {
+                  filename: file.name,
+                  contents: fileContents
                 }
-              )
-            })
-            Post.state.posts = postsArray.filter(posts => posts.filename.includes(".md"))
+              }
+
+              postObj = Object.assign(postObj, post)
+            }
+          )
+
+          return postObj
         })
-        .catch((err) => {
-            Post.state.error = err
-        })
+      })
+      .catch((err) => {
+          Post.state.error = err
+      })
     }
 }
 
