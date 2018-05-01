@@ -1,4 +1,4 @@
-import SimpleMDE from "simplemde"
+import * as Component from "../components/Editor"
 import store from "../store/post"
 import format from "date-fns/format"
 import OffCanvas from "../components/OffCanvas"
@@ -22,27 +22,8 @@ export default {
     vnode.state.post = store.state.posts.find(post => post.filename === vnode.attrs.key) || vnode.state.post
   },
   oncreate(vnode) {
-    const md = this.initEditor(document.getElementById("cms-editor"), vnode.state.post.contents)
-    md.codemirror.focus()
-    md.codemirror.setCursor(100)
-    md.codemirror.on("change", () => {
-      const val = this.md.value()
-      vnode.dom.childNodes[1].oninput = this.setContent(val)
-    })
-    this.md = md
+    console.log(Component.ContentEditor)
     m.redraw()
-  },
-  initEditor(el, val) {
-    return new SimpleMDE({
-      element: el,
-      initialValue: val,
-      spellChecker: false,
-      placeholder: "Type here...",
-      toolbarTips: false,
-      status: false,
-      autoDownloadFontAwesome: true,
-      forceSync: true
-    })
   },
   view(vnode) {
     return m(OffCanvas, {customClass: "editor-view", currentId: vnode.state.post.filename, actions: { save: () => { store.actions.savePost() }, delete: () => { store.actions.deletePost() } }}, (
@@ -58,19 +39,9 @@ export default {
                      col-sm-12`))}`
                 }
               >
-                {fields[0] === "contents" ?
-                  (
-                    <textarea id="cms-editor"></textarea>
-                  ) : (
-                    <div>
-                      {fields[0] === "title" ? null : (<label class="form-label">{fields[0].charAt(0).toUpperCase() + fields[0].slice(1)}</label>)}
-                      <input type="text"
-                        placeholder={`Insert ${fields[0]} here...`}
-                        class={`form-input ${fields[0] + "-field"} ${(fields[0] === "title" ? "h1 input-lg" : "")}`}
-                        value={vnode.state.post[fields[0]]}
-                        oninput={m.withAttr("value", (v) => { this.setValue(fields[0], v) })} />
-                    </div>
-                  )}
+                {(fields[0] === "contents") ?
+                  m(Component.RichText, { content: vnode.state.post.contents, setContent: this.setContent })
+                  : m(Component.Textbox, { field: fields[0], fieldValue: vnode.state.post[fields[0]], setValue: this.setValue })}
               </div>
             )
           })}
