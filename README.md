@@ -2,7 +2,7 @@
 
 > **NOTE**: Unless this isn't yet fully complete, the version will remain as `0.1.0`
 
-<h1 style="text-align:center;">
+<h1>
     SulatCMS
     <small><b>Version 0.1.0-alpha</b></small>
 </h1>
@@ -25,7 +25,7 @@ It's name was originated from the Filipino word meaning "to write".
 <!-- - As much as possible, we will be avoiding jQuery or any library that might bloat the app to stay true about it's "lightweight" size. -->
 
 ## Library Size
-The file size of this library for the build c39174 reports about **540kb**. Feel free to submit tips on how to decrease it.
+The file size of this library for the build`9f4ed9` reports about **597kb**. Feel free to submit tips on how to decrease it ([Click here!](https://github.com/nedpals/sulatcms/issues/3)).
 
 ## Contribute
 To start:
