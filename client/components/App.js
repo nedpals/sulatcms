@@ -1,6 +1,9 @@
 import Navbar from './Navbar'
-import FileView from './FileView' 
+import FileView from './FileView'
 export default {
+    oninit() {
+      auth.getCurrentUser()
+    },
     view(vnode) {
         return (
             <div>
