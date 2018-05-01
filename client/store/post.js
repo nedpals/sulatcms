@@ -20,7 +20,7 @@ Post.actions = {
       }
     },
     refreshList() {
-      gitDo(gitApi.endpoints["gitlab"].fetch("path", {
+      gitDo(gitApi.endpoints[localStorage.getItem("auth_provider")].fetch("path", {
           path: "articles"
       }))
       .then((files) => {
@@ -28,7 +28,7 @@ Post.actions = {
           return file.name.includes(".md")
         }).map(file => {
           let postObj = {}
-          gitDo(gitApi.endpoints["gitlab"].fetchFileRaw(file.id))
+          gitDo(gitApi.endpoints[localStorage.getItem("auth_provider")].fetchFileRaw(file.id))
           .then(
             fileContents => {
               let post = {}
