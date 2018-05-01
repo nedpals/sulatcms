@@ -5,14 +5,10 @@ import Global from "./store"
 import pluggable from "pluggable.js/src/pluggable.js"
 const app = {}
 
-app.printMsg = msg => {
-  console.log(msg)
-}
-
-app.initialize = (options, mount = document.getElementById('app')) => {
+app.printMsg = msg => console.log(msg)
+app.initialize = (options, mount = document.body) => {
   document.title = "SulatCMS"
-  // Routes(mount || arguments[0] || document.getElementById('app'))
-  Routes(null)
+  Routes(mount)
   Auth.settings = {
     provider: options.auth.provider,
     netlify_id: options.auth.netlify_id
@@ -21,11 +17,7 @@ app.initialize = (options, mount = document.getElementById('app')) => {
   Global.repo = options.repo
   app.pluginSocket.initializePlugins()
 }
-
-app.registerPlugin = (name, plugin) => {
-  app.pluginSocket.registerPlugin(name, plugin)
-  // return "TODO"
-}
+app.registerPlugin = (name, plugin) => app.pluginSocket.registerPlugin(name, plugin)
 
 pluggable.enable(app)
 
@@ -43,5 +35,5 @@ if (process.env.NODE_ENV === "development") {
       provider: "gitlab"
     },
     repo: "petreanvoice/db"
-  }, document.getElementById("sulat"))
+  }, document.getElementById("app"))
 }
