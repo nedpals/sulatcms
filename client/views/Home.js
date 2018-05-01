@@ -12,6 +12,7 @@ export default {
     this.searchText = s
   },
   oninit() {
+    auth.getCurrentUser()
     Post.actions.refreshList()
   },
   oncreate() {
