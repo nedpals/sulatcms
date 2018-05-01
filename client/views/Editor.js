@@ -22,7 +22,6 @@ export default {
     vnode.state.post = store.state.posts.find(post => post.filename === vnode.attrs.key) || vnode.state.post
   },
   oncreate(vnode) {
-    console.log(Component.ContentEditor)
     m.redraw()
   },
   view(vnode) {
