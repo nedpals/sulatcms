@@ -4,7 +4,8 @@ import logo from "../../static/logo.png"
 export default {
   login() {
       Auth.authenticate(Auth.settings.provider, () => {
-        m.route.set('/home')
+        Auth.loggedIn = true
+        m.route.set('/')
       })
   },
   view(vnode) {
