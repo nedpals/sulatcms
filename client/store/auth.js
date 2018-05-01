@@ -32,6 +32,9 @@ let Auth = {
     authenticate(provider, callback) {
       this.init().authenticate({ provider: provider, scope: gitApi.defaults[provider].scopes }, (err, data) => {
           if (err) { this.state.error = err }
+          localStorage.setItem("auth_provider", data.provider)
+          localStorage.setItem("auth_token", data.token)
+          localStorage.setItem("auth_refresh", data.refresh_token)
           this.state.data = data
           this.loggedIn = true
           callback()
