@@ -1,6 +1,9 @@
+import SimpleMDE from "simplemde"
+
 export default {
+  target: "contents",
   oncreate(vnode) {
-    const md = this.initEditor(document.getElementById("cms-editor"), vnode.state.post.contents)
+    const md = this.initEditor(document.getElementById("cms-editor"), vnode.attrs.content)
     md.codemirror.focus()
     md.codemirror.setCursor(100)
     md.codemirror.on("change", () => {
@@ -8,7 +11,6 @@ export default {
       vnode.dom.childNodes[1].oninput = vnode.attrs.setContent(val)
     })
     this.md = md
-    m.redraw()
   },
   initEditor(el, val) {
     return new SimpleMDE({
@@ -23,6 +25,8 @@ export default {
     })
   },
   view() {
-    <textarea id="cms-editor"></textarea>
+    return (
+      <textarea id="cms-editor"></textarea>
+    )
   }
 }
