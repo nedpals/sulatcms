@@ -1,27 +1,30 @@
 import Authenticator from "netlify-auth-providers/src/netlify"
 import { gitApi, gitDo } from "../modules/git";
 
+const AuthState = Object.freeze({
+  error: "",
+  data: {
+    provider: "",
+    token: "",
+    refresh_token: ""
+  },
+  user: {
+    handle: "",
+    name: {
+      sliceName(name) { name.slice(" ") },
+      first: "",
+      last: "",
+      full: ""
+    },
+    avatar: "",
+    email: "",
+    user_id: ""
+  }
+})
+
 let Auth = {
     loggedIn: false,
-    state: {
-      error: "",
-      data: {
-          provider: "",
-          token: "",
-          refresh_token: ""
-      },
-      user: {
-          handle: "",
-          name: {
-              first: "",
-              last: "",
-              full: ""
-          },
-          avatar: "",
-          email: "",
-          user_id: ""
-      }
-    },
+    state: Object.assign({}, AuthState),
     settings: {
       provider: '',
       netlify_id: '',
