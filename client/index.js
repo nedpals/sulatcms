@@ -17,6 +17,4 @@ if (process.env.NODE_ENV === "development") {
     },
     repo: "petreanvoice/db"
   }, document.getElementById("app"))
-
-  testPlugin()
 }
