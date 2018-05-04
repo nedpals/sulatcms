@@ -50,6 +50,12 @@ let Auth = {
         })
       }
     },
+    logout() {
+      localStorage.clear()
+      this.loggedIn = false
+      this.state = AuthState
+      m.route.set('/login')
+    },
     authenticate(provider, callback) {
       this.init().authenticate({ provider: provider, scope: gitApi.defaults[provider].scopes }, (err, data) => {
           if (err) { this.state.error = err }
