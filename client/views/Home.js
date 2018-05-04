@@ -1,18 +1,13 @@
-import FileView from '../components/FileView'
 import Search from '../components/Search'
 import Container from '../components/HomeContainer'
 import Post from '../store/post'
-import auth from '../store/auth'
-import App from '../components/App'
 
 export default {
-  loading: false,
   searchText: "",
   setSearch(s) {
     this.searchText = s
   },
   oninit() {
-    auth.getCurrentUser()
     Post.actions.refreshList()
   },
   oncreate() {
