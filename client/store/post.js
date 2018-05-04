@@ -12,7 +12,21 @@ Post.state = {
 }
 
 Post.actions = {
-    savePost(filename, payload) {},
+    savePost(filename, payload) {
+      if (Post.getter.searchPost(filename)) {
+        gitDo(gitApi.endpoints[localStorage.getItem("auth_provider")].updateFile(filename, {
+          branch: Globals.branch,
+          content: payload,
+          commit_message: `${filename} updated`
+        }))
+      } else {
+        gitDo(gitApi.endpoints[localStorage.getItem("auth_provider")].updateFile(filename, {
+          branch: Globals.branch,
+          content: payload,
+          commit_message: `created ${filename}`
+        }))
+      }
+    },
     deletePost(filename) {
       let confirmDelete = confirm("You are about to delete this post.")
       if (confirmDelete) {
