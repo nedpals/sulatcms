@@ -2,8 +2,9 @@ import postData from "../mocks/post-data"
 import { gitApi, gitDo } from "../modules/git"
 import Auth from "./auth"
 import fm from "front-matter"
+import Globals from "."
 
-const Post = {}
+let Post = {}
 
 Post.state = {
     posts: [],
@@ -28,11 +29,11 @@ Post.actions = {
           return file.name.includes(".md")
         }).map(file => {
           let postObj = {}
-          gitDo(gitApi.endpoints[localStorage.getItem("auth_provider")].fetchFileRaw(file.id))
+          const file_raw = localStorage.getItem("auth_provider") === "github" ? file.download_url : file.id
+          gitDo(gitApi.endpoints[localStorage.getItem("auth_provider")].fetchFileRaw(file_raw))
           .then(
             fileContents => {
               let post = {}
-
               if (fm.test(fileContents)) {
                 const parsedFile = fm(fileContents);
                 post = Object.assign(
@@ -48,11 +49,9 @@ Post.actions = {
                   contents: fileContents
                 }
               }
-
               postObj = Object.assign(postObj, post)
             }
           )
-
           return postObj
         })
       })
