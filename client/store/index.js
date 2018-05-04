@@ -1,8 +1,9 @@
 import Auth from "./auth"
 
-const Globals = { 
+const Globals = {
     domain: '' || window.location.hostname,
-    repo: ""
+    repo: "",
+    branch: ""
 }
 
 export default Globals

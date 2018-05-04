@@ -16,6 +16,7 @@ const app = {
     }
     Global.domain = options.domain
     Global.repo = options.repo
+    Global.branch = options.branch || "master"
     this.pluginSocket.initializePlugins()
   },
   registerPlugin(name, plugin) {
