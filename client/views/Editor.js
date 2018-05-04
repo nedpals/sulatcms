@@ -21,7 +21,7 @@ export default {
   oninit(vnode) {
     vnode.state.post = store.state.posts.find(post => post.filename === vnode.attrs.key) || vnode.state.post
   },
-  oncreate(vnode) {
+  oncreate() {
     m.redraw()
   },
   view(vnode) {
