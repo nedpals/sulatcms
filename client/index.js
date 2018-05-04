@@ -3,8 +3,8 @@ import { initialize, registerPlugin } from "./cms";
 import testPlugin from "./plugins/test";
 
 const _public = {
-  initialize: initialize,
-  registerPlugin: registerPlugin
+  initialize,
+  registerPlugin
 }
 
 module.exports = _public
