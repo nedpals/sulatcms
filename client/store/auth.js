@@ -34,20 +34,20 @@ let Auth = {
     },
     getCurrentUser() {
       if (!this.state.user) {
-        gitDo(gitApi.endpoints["gitlab"].getCurrentUser())
-          .then((currentUser) => {
-            this.state.user = {
-              handle: currentUser.username,
-              name: {
-                first: currentUser.name.slice(" ")[0],
-                last: currentUser.name.slice(" ")[1],
-                full: currentUser.name
-              },
-              avatar: currentUser.avatar_url,
-              email: currentUser.email,
-              user_id: currentUser.id
-            }
-          })
+        gitDo(gitApi.endpoints[localStorage.getItem("auth_provider")].getCurrentUser())
+        .then((currentUser) => {
+          this.state.user = {
+            handle: currentUser.username,
+            name: {
+              first: sliceName(currentUser.name)[0],
+              last: sliceName(currentUser.name)[1],
+              full: currentUser.name
+            },
+            avatar: currentUser.avatar_url,
+            email: currentUser.email,
+            user_id: currentUser.id
+          }
+        })
       }
     },
     authenticate(provider, callback) {
