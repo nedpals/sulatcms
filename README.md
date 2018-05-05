@@ -25,10 +25,10 @@ Sulat was built to adapt to the demands of the user and to any kind of SSG's (St
 The file size of this library for the build`d6b291` reports about **600kb**. Feel free to submit tips on how to decrease it ([Click here!](https://github.com/nedpals/sulatcms/issues/3)).
 
 ## Pre-launch plans
-[ ] Make Github and Gitlab as default platforms
-[ ] Implement few API's for plugins
-[ ] Cleanup the UI
-[ ] Target file size should be atleast between *100-300kb*
+- [ ] Make Github and Gitlab as default platforms
+- [ ] Implement few API's for plugins
+- [ ] Cleanup the UI
+- [ ] Target file size should be atleast between *100-300kb*
 
 ## Contribute
 To start:
