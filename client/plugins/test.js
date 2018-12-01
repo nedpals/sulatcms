@@ -1,9 +1,15 @@
-import { registerPlugin } from "../cms";
+import { registerPlugin } from "../modules/pluginSystem";
 
 export default function testPlugin () {
   return registerPlugin('test', {
-    initialize(socket) {
-      socket.plugged.printMsg("This is a test from a custom plugin")
+    initialize(state) {
+      state.name = "Ned"
+      console.log("Hello! " + state.name)
+    },
+    home: {
+      initialize(page) {
+        console.log('Triggered in homepage!')
+      }
     }
   })
 }

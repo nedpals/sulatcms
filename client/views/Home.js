@@ -1,6 +1,7 @@
 import Search from '../components/Search'
 import Container from '../components/HomeContainer'
 import Post from '../store/post'
+import { fire } from '../modules/pluginSystem'
 
 export default {
   searchText: "",
@@ -11,6 +12,7 @@ export default {
     Post.actions.refreshList()
   },
   oncreate() {
+    fire('home.initialize')
     m.redraw()
   },
   view(vnode) {
@@ -29,7 +31,7 @@ export default {
               <input type="text"
                 class="form-input"
                 placeholder="..."
-                value={vnode.state.searchText}
+                value={this.searchText}
                 oninput={m.withAttr("value", (s) => { this.setSearch(s) })}
               />
               <i class="form-icon icon icon-search"></i>

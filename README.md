@@ -13,7 +13,7 @@ Sulat was built to adapt to the demands of the user and to any kind of SSG's (St
 
 
 ## Features
-1. **Extensible** - Want to use Gitlab as gateway? Add a custom shortcode/widget? You can make a plugin for it. Sulat uses [pluggable.js](https://github.com/conversejs/pluggablejs) to make Sulat your own CMS.
+1. **Extensible** - Want to use Gitlab as gateway? Add a custom shortcode/widget? You can make a plugin for it. Sulat has a simple plugin system to make Sulat your own CMS.
 2. **Dead simple** - The interface doesn't have any additional steps to do what's supposed to do. Pick an article or create a new one with a click and start writing.
 3. **Powered by [Mithril](https://mithril.js.org)** - A tiny, complete out-of-the box Javascript library makes Sulat slim and fast.
 

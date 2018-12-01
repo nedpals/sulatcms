@@ -8,7 +8,7 @@ module.exports = (options, req) => ({
     moduleName: 'sulatcms',
     entry: './client/index.js',
     library: process.env.NODE_ENV === "production" ? 'sulatcms': undefined,
-    transformModules: ['netlify-auth-providers', 'pluggable.js'],
+    transformModules: ['netlify-auth-providers'],
     presets: [
       require("poi-preset-bundle-report"),
       require('poi-preset-webpackmonitor')({

@@ -5137,12 +5137,6 @@ pkg-dir@^2.0.0:
   dependencies:
     find-up "^2.1.0"
 
-pluggable.js@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/pluggable.js/-/pluggable.js-2.0.0.tgz#25926a9cf1e4eefef6c61fa8584461607a733843"
-  dependencies:
-    lodash "^4.17.4"
-
 poi-dev-utils@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/poi-dev-utils/-/poi-dev-utils-1.0.1.tgz#c3089d1db60e9d2c56343decc6a3b9647d577c14"

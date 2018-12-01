@@ -2,6 +2,7 @@ import * as Component from "../components/Editor"
 import store from "../store/post"
 import format from "date-fns/format"
 import OffCanvas from "../components/OffCanvas"
+import { fire } from "../modules/pluginSystem"
 
 export default {
   post: {
@@ -23,6 +24,8 @@ export default {
   },
   oncreate() {
     m.redraw()
+
+    fire('editor.initialize')
   },
   view(vnode) {
     return m(OffCanvas, {customClass: "editor-view", currentId: vnode.state.post.filename, actions: { save: () => { store.actions.savePost() }, delete: () => { store.actions.deletePost() } }}, (

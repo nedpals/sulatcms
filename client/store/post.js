@@ -1,6 +1,7 @@
 import postData from "../mocks/post-data"
 import { gitApi, gitDo } from "../modules/git"
 import Auth from "./auth"
+import { fire } from "../modules/pluginSystem"
 import fm from "front-matter"
 import Globals from "."
 
@@ -13,6 +14,8 @@ Post.state = {
 
 Post.actions = {
     savePost(filename, payload) {
+      fire('hooks.beforePublish')
+
       if (Post.getter.searchPost(filename)) {
         gitDo(gitApi.endpoints[localStorage.getItem("auth_provider")].updateFile(filename, {
           branch: Globals.branch,
@@ -26,12 +29,18 @@ Post.actions = {
           commit_message: `created ${filename}`
         }))
       }
+
+      fire('hooks.afterPublish')
     },
     deletePost(filename) {
       let confirmDelete = confirm("You are about to delete this post.")
+      fire('hooks.beforeDelete')
+
       if (confirmDelete) {
           alert("Post Deleted")
           m.route.set("/")
+
+          fire('hooks.afterDelete')
       }
     },
     refreshList() {

@@ -1,6 +1,7 @@
 import "../styles/styles.scss"
-import { initialize, registerPlugin } from "./cms";
-import testPlugin from "./plugins/test";
+import { initialize } from "./cms"
+import { registerPlugin } from "./modules/pluginSystem"
+import testPlugin from "./plugins/test"
 
 const _public = {
   initialize,
@@ -10,11 +11,15 @@ const _public = {
 module.exports = _public
 
 if (process.env.NODE_ENV === "development") {
-  initialize({
-    auth: {
-      netlify_id: "7ed5abbf-556c-4bae-982c-225b15c3b997",
-      provider: "gitlab"
-    },
-    repo: "petreanvoice/db"
-  }, document.getElementById("app"))
+  document.addEventListener("DOMContentLoaded", () => {
+    testPlugin()
+    
+    initialize({
+      auth: {
+        netlify_id: "7ed5abbf-556c-4bae-982c-225b15c3b997",
+        provider: "gitlab"
+      },
+      repo: "petreanvoice/db"
+    }, document.getElementById("app"))
+  })
 }
