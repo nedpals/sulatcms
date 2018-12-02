@@ -23,33 +23,36 @@ export default {
       async: false
     }
   },
-  createFile(file, commit) {
+  createFile(file_path, commit) {
     return {
       type: "POST",
-      path: "/projects/:repo/repository/files/:file",
+      path: "/projects/:repo/repository/files/:file_path",
       data: {
+        file_path: file_path,
         branch: commit.branch,
         content: commit.content,
         commit_message: commit.message
       }
     }
   },
-  updateFile(file, commit) {
+  updateFile(file_path, commit) {
     return {
-      type: "PATCH",
-      path: "/projects/:repo/repository/files/:file",
+      type: "PUT",
+      path: "/projects/:repo/repository/files/:file_path",
       data: {
+        file_path: file_path,
         branch: commit.branch,
         content: commit.content,
         commit_message: commit.message
       }
     }
   },
-  deleteFile(file, commit) {
+  deleteFile(file_path, commit) {
     return {
       type: "DELETE",
-      path: "/projects/:repo/repository/files/:file",
+      path: "/projects/:repo/repository/files/:file_path",
       data: {
+        file_path: file_path,
         branch: 'master',
         commit_message: 'Delete Article ' + file.name + ' by ME'
       }
