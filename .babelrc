@@ -1,9 +1,18 @@
 {
-    "presets": ["es2015"],
+    "presets": [
+        [
+            "env", {
+                "targets": {
+                    "browsers": ["> 0.25%"]
+                }
+            }
+        ]
+    ],
     "plugins": [
         ["transform-react-jsx", {
             "pragma": "m"
         }],
-        ["wildcard"]
+        ["wildcard"],
+        ["transform-object-rest-spread"]
     ]
 }
