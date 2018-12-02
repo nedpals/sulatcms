@@ -1,8 +1,5 @@
 import postData from "../mocks/post-data"
-import Auth from "./auth"
 import { fire } from "../modules/pluginSystem"
-
-
 
 let Post = {}
 
@@ -13,12 +10,13 @@ Post.state = {
 }
 
 Post.actions = {
-  savePost(filename, payload) {
+  savePost(filepath, filename, payload) {
 
     fire('hooks.beforePublish', [
       function search(name) {
         return Post.getters.searchPost(name)
       },
+      filepath,
       filename,
       payload
     ])
@@ -38,8 +36,9 @@ Post.actions = {
   },
   refreshList() {
     const cb = (arr, err) => {
-      if (arr === null && err)
-        Post.state.error = err
+      if (arr === null && err) { Post.state.error = err }
+      console.log(arr)
+      Post.state.error = err
       Post.state.isLoading = true
       Post.state.posts = arr
       Post.state.isLoading = false
