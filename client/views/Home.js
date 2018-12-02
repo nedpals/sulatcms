@@ -2,6 +2,7 @@ import Search from '../components/Search'
 import Container from '../components/HomeContainer'
 import Post from '../store/post'
 import { fire } from '../modules/pluginSystem'
+import Auth from '../store/auth';
 
 export default {
   searchText: "",
@@ -58,9 +59,9 @@ export default {
                     return [
                       <div key={post.filename}>
                         <h2 style="margin-bottom:0;">
-                          <a href={"#!/edit/" + post.filename}>{post.title}</a>
+                          <a href={"#!/edit/" + post.filename}>{post.attributes.title}</a>
                         </h2>
-                        <p class="text-uppercase text-gray">By {post.author} Filed under: {post.tags}</p>
+                        <p class="text-uppercase text-gray">By {post.author} Filed under: {post.attributes.tags}</p>
                       </div>
                     ]
                   }) :
