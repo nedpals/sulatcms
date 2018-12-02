@@ -17,6 +17,9 @@ module.exports = (options, req) => ({
       })
     ],
     webpack(config) {
+      config.node = {
+        fs: 'empty'
+      }
       config.plugins.push(new webpack.ProvidePlugin({
         m: 'mithril'
       }))
