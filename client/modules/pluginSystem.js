@@ -53,13 +53,17 @@ function fire(name, context) {
     })
 }
 
-// function initializePlugin(name) {
-
-// }
+function initializePlugin(name) {
+    Globals.plugins.forEach(plugin => {
+        if (plugin.name === name && plugin.activated)
+            plugin.initialize()
+    })
+}
 
 export {
     registerPlugin,
     initializePlugins,
+    initializePlugin,
     fire,
     activatePlugin
 }
