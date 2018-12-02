@@ -65,5 +65,6 @@ export {
     initializePlugins,
     initializePlugin,
     fire,
+    deactivatePlugin,
     activatePlugin
 }
