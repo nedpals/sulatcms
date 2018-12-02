@@ -7,10 +7,9 @@ export default {
     md.codemirror.focus()
     md.codemirror.setCursor(100)
     md.codemirror.on("change", () => {
-      const val = this.md.value()
-      vnode.dom.childNodes[1].oninput = vnode.attrs.setContent(val)
+      const val = md.value()
+      vnode.dom.oninput = vnode.attrs.setContent(val)
     })
-    this.md = md
   },
   initEditor(el, val) {
     return new SimpleMDE({

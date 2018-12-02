@@ -47,6 +47,9 @@ export default {
               </div>
             )
           })}
+          <div class="col-12 col-sm-12">
+            {m(Component.RichText, { content: this.post.contents, setContent: (value) => this.setContent(this.post.contents, value) })}
+          </div>
         </form>
       </div>
     ))
