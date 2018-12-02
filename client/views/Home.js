@@ -8,8 +8,14 @@ export default {
   setSearch(s) {
     this.searchText = s
   },
+  posts() {
+    return this.searchText ? Post.getters.searchPost(this.searchText) : Post.state.posts
+  },
   oninit() {
     Post.actions.refreshList()
+  },
+  onupdate() {
+    m.redraw()
   },
   oncreate() {
     fire('home.initialize')
