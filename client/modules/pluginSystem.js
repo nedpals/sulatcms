@@ -13,7 +13,9 @@ function registerPlugin(name, pluginObj) {
 function initializePlugins() {
     Globals.plugins.forEach(plugin => {
         console.log(`Plugin "${plugin.name}" activated and initiated!`)
-        plugin.initialize(Globals)
+        
+        if (plugin.activated)
+            plugin.initialize(Globals)
     })
 }
 
@@ -26,17 +28,16 @@ function deactivatePlugin(name) {
     })
 }
 
-function fire(name, context, plugins) {
+function fire(name, context) {
     Globals.plugins.forEach(plugin => {
-        name = name.split(".")
-        let pluginFn = name.length !== 1 ? plugin[name[0]][name[1]]() : plugin[name[0]](context)
+        let event = name.split(".")
+        let group = event.length !== 1 ? event[0] : null;
+        let fnName = event.length !== 1 ? event[1] : event[0]
 
-        if (plugins.includes(plugin.name)) {
-            pluginFn
-        }
+        if (plugin.hasOwnProperty(group) && plugin[group]) {
+            let pluginFn = event.length !== 1 ? plugin[group][fnName] : plugin[fnName]
 
-        if (plugins === undefined || plugins.length === 0) {
-            pluginFn
+            pluginFn(...context)
         }
     })
 }
