@@ -1,7 +1,7 @@
 import Routes from "./routes"
 import Auth from "./store/auth"
 import Global from "./store"
-import { initializePlugins } from "./modules/pluginSystem"
+import { initializePlugins, fire } from "./modules/pluginSystem"
 
 function initialize(options, mount = document.body) {
   document.title = "SulatCMS"
@@ -14,6 +14,9 @@ function initialize(options, mount = document.body) {
   Global.domain = options.domain
   Global.repo = options.repo
   Global.branch = options.branch || "master"
+
+  const settings = Auth.settings
+  fire('auth.initialize', [settings])
 }
 
 export {
