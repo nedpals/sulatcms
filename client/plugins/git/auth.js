@@ -21,7 +21,7 @@ export default {
         getUser(user) {
             gitDo(gitApi.endpoints[localStorage.getItem("auth_provider")].getCurrentUser())
             .then((currentUser) => {
-                user({
+                return {
                     handle: currentUser.username,
                     name: {
                     first: sliceName(currentUser.name)[0],
@@ -31,8 +31,10 @@ export default {
                     avatar: currentUser.avatar_url,
                     email: currentUser.email,
                     user_id: currentUser.id
-                })
+                }
             })
+            // .then(profile => console.log(profile))
+            .then(profile => user(profile))
         },
         revoke(cb) {
             cb(() => {
