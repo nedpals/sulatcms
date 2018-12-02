@@ -1,4 +1,4 @@
-import Global from "../../store"
+import Global from "../../../store"
 import { gitlab } from "./defaults"
 
 export default {

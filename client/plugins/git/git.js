@@ -1,9 +1,6 @@
-import Global from "../store"
-import Post from "../store/post"
-
-import gitlab from "./git-api/gitlab"
-import github from "./git-api/github"
-import * as defaults from "./git-api/defaults"
+import * as defaults from "./api/defaults";
+import github from "./api/github";
+import gitlab from "./api/gitlab";
 
 const gitApi = {
     defaults,
@@ -25,4 +22,5 @@ function gitDo (endpoint) {
       deserialize: endpoint.deserialize ? endpoint.deserialize : undefined
   })
 }
-export { gitApi, gitDo }
+export { gitApi, gitDo };
+

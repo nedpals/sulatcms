@@ -3,10 +3,7 @@ import logo from "../../static/logo.png"
 
 export default {
   login() {
-      Auth.authenticate(Auth.settings.provider, () => {
-        Auth.loggedIn = true
-        m.route.set('/')
-      })
+      Auth.authenticate(Auth.settings.provider)
   },
   view(vnode) {
     return (

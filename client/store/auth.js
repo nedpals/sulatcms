@@ -1,12 +1,11 @@
-import Authenticator from "netlify-auth-providers/src/netlify"
-import { gitApi, gitDo } from "../modules/git";
+import { fire } from "../modules/pluginSystem"
 
 const AuthState = Object.freeze({
   error: "",
   data: {
-    provider: "",
-    token: "",
-    refresh_token: ""
+    provider: localStorage.getItem('auth_provider'),
+    token: localStorage.getItem('auth_token'),
+    refresh_token: localStorage.getItem('auth_refresh')
   },
   user: {
     handle: "",
@@ -29,45 +28,42 @@ let Auth = {
       provider: '',
       netlify_id: '',
     },
-    init() {
-      return new Authenticator({ site_id: this.settings.netlify_id })
-    },
     getCurrentUser() {
       if (!this.state.user) {
-        gitDo(gitApi.endpoints[localStorage.getItem("auth_provider")].getCurrentUser())
-        .then((currentUser) => {
-          this.state.user = {
-            handle: currentUser.username,
-            name: {
-              first: sliceName(currentUser.name)[0],
-              last: sliceName(currentUser.name)[1],
-              full: currentUser.name
-            },
-            avatar: currentUser.avatar_url,
-            email: currentUser.email,
-            user_id: currentUser.id
-          }
+        fire('auth.getUser', (user) => {
+          this.state.user = user
         })
       }
     },
-    logout() {
-      localStorage.clear()
-      this.loggedIn = false
-      this.state = AuthState
-      m.route.set('/login')
-    },
     authenticate(provider, callback) {
-      this.init().authenticate({ provider: provider, scope: gitApi.defaults[provider].scopes }, (err, data) => {
-          if (err) { this.state.error = err }
-          localStorage.setItem("auth_provider", data.provider)
-          localStorage.setItem("auth_token", data.token)
-          localStorage.setItem("auth_refresh", data.refresh_token)
-          this.state.data = data
-          this.loggedIn = true
-          callback()
-          this.getCurrentUser()
-      })
-    }
+      const user = (data, err) => {
+        if (err) { this.state.error = err }
+
+        localStorage.setItem("auth_provider", data.provider)
+        localStorage.setItem("auth_token", data.token)
+        localStorage.setItem("auth_refresh", data.refresh_token)
+        
+        this.loggedIn = true
+        m.route.set('/')
+        callback()
+        
+        this.getCurrentUser()
+      }
+      
+      fire('auth.authenticate', [provider, user])
+    },
+    logout() {
+      const cb = (fn) => {
+        fn()
+
+        localStorage.clear()
+        this.loggedIn = false
+        this.state = AuthState
+        m.route.set('/login') 
+      }
+
+      fire('auth.revoke', [cb])
+    },
 }
 
 export default Auth
