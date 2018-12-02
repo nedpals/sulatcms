@@ -28,6 +28,17 @@ function deactivatePlugin(name) {
     })
 }
 
+function activatePlugin(name) {
+    Globals.plugins.forEach(plugin => {
+        if (plugin.name === name)
+            plugin.activated = true
+
+        initializePlugin(plugin.name)
+
+        return plugin
+    })
+}
+
 function fire(name, context) {
     Globals.plugins.forEach(plugin => {
         let event = name.split(".")
@@ -50,5 +61,5 @@ export {
     registerPlugin,
     initializePlugins,
     fire,
-    deactivatePlugin
+    activatePlugin
 }
