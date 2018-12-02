@@ -47,12 +47,12 @@ export default {
                   <button class="btn btn-clear float-right"></button>
                   {Post.state.posts.error}
                 </div>
-              ] : Post.state.posts ?
-                  Post.state.posts.map((post) => {
+              ] : !Post.state.isLoading ?
+                  this.posts().map((post) => {
                     return [
                       <div key={post.filename}>
                         <h2 style="margin-bottom:0;">
-                          <a href={"/edit/" + post.filename} oncreate={m.route.link}>{post.title}</a>
+                          <a href={"#!/edit/" + post.filename}>{post.title}</a>
                         </h2>
                         <p class="text-uppercase text-gray">By {post.author} Filed under: {post.tags}</p>
                       </div>
