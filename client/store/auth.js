@@ -29,25 +29,24 @@ let Auth = {
       netlify_id: '',
     },
     getCurrentUser() {
-      if (!this.state.user) {
-        fire('auth.getUser', (user) => {
-          this.state.user = user
-        })
-      }
+      // fire('auth.getUser', (user) => {
+      //   Auth.state.user = user
+      //   // console.log(user)
+      // })
     },
-    authenticate(provider, callback) {
+    authenticate(provider) {
       const user = (data, err) => {
         if (err) { this.state.error = err }
 
         localStorage.setItem("auth_provider", data.provider)
         localStorage.setItem("auth_token", data.token)
         localStorage.setItem("auth_refresh", data.refresh_token)
-        
+        // fire('auth.getUser', (user) => {
+        //   Auth.state.user = user
+        //   // console.log(user)
+        // })
         this.loggedIn = true
         m.route.set('/')
-        callback()
-        
-        this.getCurrentUser()
       }
       
       fire('auth.authenticate', [provider, user])
