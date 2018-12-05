@@ -25,10 +25,10 @@ export default {
   },
   createFile(file_path, commit) {
     return {
-      type: "POST",
-      path: "/projects/:repo/repository/files/:file_path",
+      method: "POST",
+      path: `/projects/${encodeURIComponent(Global.repo)}/repository/files/:file_path`,
       data: {
-        file_path: file_path,
+        file_path: encodeURIComponent(file_path),
         branch: commit.branch,
         content: commit.content,
         commit_message: commit.message
@@ -37,8 +37,8 @@ export default {
   },
   updateFile(file_path, commit) {
     return {
-      type: "PUT",
-      path: "/projects/:repo/repository/files/:file_path",
+      method: "PUT",
+      path: `/projects/${encodeURIComponent(Global.repo)}/repository/files/:file_path`,
       data: {
         file_path: file_path,
         branch: commit.branch,
@@ -49,10 +49,10 @@ export default {
   },
   deleteFile(file_path, commit) {
     return {
-      type: "DELETE",
-      path: "/projects/:repo/repository/files/:file_path",
+      method: "DELETE",
+      path: `/projects/${encodeURIComponent(Global.repo)}/repository/files/:file_path`,
       data: {
-        file_path: file_path,
+        file_path: encode(file_path),
         branch: 'master',
         commit_message: 'Delete Article ' + file.name + ' by ME'
       }
