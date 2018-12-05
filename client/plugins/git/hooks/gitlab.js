@@ -4,16 +4,16 @@ import Auth from "../../../store/auth"
 import fm from "front-matter"
 
 export default {
-  beforePublish(search, filepath, filename, payload) {
+  beforePublish(filepath, filename, payload, search) {
+    let _commit_message = (search(filename) ? `${filename} updated` : `created ${filename}`)
+
     gitDo(
-      gitApi.endpoints[localStorage.getItem("auth_provider")].updateFile(
+      gitApi.endpoints[localStorage.getItem("auth_provider")][search(filename) ? 'updateFile' : 'createFile'](
         filepath,
         {
           branch: Globals.branch,
           content: payload,
-          commit_message: search(filename)
-            ? `${filename} updated`
-            : `created ${filename}`
+          message: _commit_message
         }
       )
     )
@@ -46,7 +46,7 @@ export default {
           .then(fileContents => {
             return files.map((file, i) => {
               let obj = {
-                attributes:
+                metadata:
                   fm.test(fileContents) && fm(fileContents[i]).attributes,
                 file_path: file.path,
                 filename: file.name,
@@ -55,22 +55,15 @@ export default {
                   : fileContents[i]
               }
 
-              obj.attributes.tags = fm(fileContents[i]).attributes.tags
+              obj.metadata._tags = obj.metadata.tags
+              obj.metadata.tags = undefined
 
               return obj
             })
           })
           .catch(err => console.error(err))
       })
-      // .then(posts => console.log(posts))
-      .then(posts => cb([
-          {
-              title: "Hello",
-              attributes: {
-                  tags: ["hello:world", "yow"]
-              }
-          }
-      ], null))
+      .then(posts => cb(posts, null))
       .catch(err => {
         cb(null, err)
       })
