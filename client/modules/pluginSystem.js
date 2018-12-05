@@ -1,4 +1,5 @@
-import Globals from "../store/index";
+import Globals from "../store/index"
+import Auth from "../store/auth"
 
 
 // Sulat plugin system
@@ -12,10 +13,8 @@ function registerPlugin(name, pluginObj) {
 
 function initializePlugins() {
     Globals.plugins.forEach(plugin => {
-        console.log(`Plugin "${plugin.name}" activated and initiated!`)
-        
         if (plugin.activated)
-            plugin.initialize(Globals)
+            plugin.initialize(Globals, Auth.settings)
     })
 }
 
