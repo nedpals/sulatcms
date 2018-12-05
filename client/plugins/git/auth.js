@@ -33,7 +33,6 @@ export default {
                     user_id: currentUser.id
                 }
             })
-            // .then(profile => console.log(profile))
             .then(profile => user(profile))
         },
         revoke(cb) {
