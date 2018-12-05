@@ -4,8 +4,10 @@ import hooks from "./hooks"
 
 export default function () {
     return registerPlugin('git', {
-        initialize() {
-            console.log('Git plugin loaded')
+        initialize(config, auth) {
+            if (auth.provider === 'gitlab') {
+                config.keys.file = 'file_path'
+            }
         },
         ...auth,
         ...hooks
