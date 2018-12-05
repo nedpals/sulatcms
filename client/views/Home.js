@@ -22,12 +22,12 @@ export default {
     fire('home.initialize')
     m.redraw()
   },
-  view(vnode) {
+  view() {
     return m(Container, (
       <div>
         <div class="clearfix">
           <div class="float-left">
-            <a href="/new" oncreate={m.route.link} class="btn btn-primary">
+            <a href="#!/new" class="btn btn-primary">
               <i class="icon icon-lg icon-plus"></i>
               Add new post
           </a>
@@ -59,9 +59,9 @@ export default {
                     return [
                       <div key={post.filename}>
                         <h2 style="margin-bottom:0;">
-                          <a href={"#!/edit/" + post.filename}>{post.attributes.title}</a>
+                          <a href={"#!/edit/" + post.filename}>{post.metadata.title}</a>
                         </h2>
-                        <p class="text-uppercase text-gray">By {post.author} Filed under: {post.attributes.tags}</p>
+                        <p class="text-uppercase text-gray">By {post.author} Filed under: {(post.metadata.tags || post.metadata._tags).join(", ")}</p>
                       </div>
                     ]
                   }) :
