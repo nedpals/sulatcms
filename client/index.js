@@ -21,7 +21,10 @@ if (process.env.NODE_ENV === "development") {
         netlify_id: "7ed5abbf-556c-4bae-982c-225b15c3b997",
         provider: "gitlab"
       },
-      repo: "petreanvoice/db"
+      repo: "petreanvoice/db",
+      keys: {
+        posts_path: 'articles/'
+      }
     }, document.getElementById("app"))
   })
 }
