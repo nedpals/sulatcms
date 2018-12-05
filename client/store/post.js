@@ -12,20 +12,26 @@ Post.state = {
 Post.actions = {
   savePost(filepath, filename, payload) {
 
-    fire('hooks.beforePublish', [
-      function search(name) {
-        return Post.getters.searchPost(name)
-      },
-      filepath,
-      filename,
-      payload
-    ])
-
-    fire('hooks.afterPublish')
+    return new Promise((resolve, reject) => {
+      if (filepath && filename && payload) {
+        resolve([filepath, filename, payload])
+      } else {
+        reject(Error("One of the fields is missing"))
+      }
+    })
+    .then(values => {
+      fire('hooks.beforePublish', [
+        ...values,
+        function search(name) {
+          return Post.state.posts.find(p => p.filename === name) ? true : false
+        },
+      ])
+    })
+    .catch(err => console.error(err))
   },
-  deletePost(filename) {
+  deletePost(file) {
     let confirmDelete = confirm("You are about to delete this post.")
-    fire('hooks.beforeDelete', [filename])
+    fire('hooks.beforeDelete', [file])
 
     if (confirmDelete) {
       alert("Post Deleted")
@@ -37,7 +43,6 @@ Post.actions = {
   refreshList() {
     const cb = (arr, err) => {
       if (arr === null && err) { Post.state.error = err }
-      console.log(arr)
       Post.state.error = err
       Post.state.isLoading = true
       Post.state.posts = arr
@@ -53,7 +58,7 @@ Post.getters = {
         return Post.state.filename === filename
     },
     searchPost(term) {
-        return Post.state.posts.filter(post => post.title.toLowerCase().includes(term))
+        return Post.state.posts.filter(post => post.metadata.title.toLowerCase().includes(term))
     }
 }
 
