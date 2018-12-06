@@ -17,10 +17,10 @@ export default {
       )
     )
   },
-  loadList(cb) {
+  loadList(cb, path) {
     gitDo(
       gitApi.endpoints[localStorage.getItem("auth_provider")].fetch("path", {
-        path: "articles"
+        path
       })
     )
       .then(files => {
