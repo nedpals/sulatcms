@@ -40,7 +40,7 @@ export default {
       method: "PUT",
       path: `/projects/${encodeURIComponent(Global.repo)}/repository/files/:file_path`,
       data: {
-        file_path: file_path,
+        file_path: encodeURIComponent(file_path),
         branch: commit.branch,
         content: commit.content,
         commit_message: commit.message
@@ -52,7 +52,7 @@ export default {
       method: "DELETE",
       path: `/projects/${encodeURIComponent(Global.repo)}/repository/files/:file_path`,
       data: {
-        file_path: encode(file_path),
+        file_path: encodeURIComponent(file_path),
         branch: 'master',
         commit_message: 'Delete Article ' + file.name + ' by ME'
       }
