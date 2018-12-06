@@ -1,6 +1,6 @@
 > **ATTENTION**: This is currently in development. Please wait for the stable release.
 
-> **NOTE**: Unless this isn't yet fully complete, the version will remain as `0.1.0`
+> **NOTE**: Unless this isn't yet fully complete, the version will remain as `1.0.0`
 
 # SulatCMS [![Maintainability](https://api.codeclimate.com/v1/badges/c2985411330f1b918966/maintainability)](https://codeclimate.com/github/nedpals/sulatcms/maintainability)
 Super simple platform-agnostic headless CMS made for you.
@@ -26,7 +26,9 @@ The file size of this library for the build`d6b291` reports about **600kb**. Fee
 
 ## Pre-launch plans
 - [ ] Make Github and Gitlab as default platforms
-- [ ] Implement few API's for plugins
+  - [x] Gitlab support
+  - [x] Github support (Partial support for now, only supports loading of files)
+- [x] Implement few API's for plugins
 - [ ] Cleanup the UI
 - [ ] Target file size should be atleast between *100-300kb*
 
