@@ -61,7 +61,7 @@ export default {
                         <h2 style="margin-bottom:0;">
                           <a href={"#!/edit/" + post.filename}>{post.metadata.title}</a>
                         </h2>
-                        <p class="text-uppercase text-gray">By {post.author} Filed under: {(post.metadata.tags || post.metadata._tags).join(", ")}</p>
+                        <p class="text-uppercase text-gray">By {post.author} Filed under: {post.metadata && (post.metadata.tags || post.metadata._tags).join(", ")}</p>
                       </div>
                     ]
                   }) :
