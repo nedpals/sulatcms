@@ -10,6 +10,6 @@ export default function () {
             }
         },
         ...auth,
-        ...hooks
+        hooks: hooks()
     })
 }
