@@ -3,7 +3,7 @@ const github = {
   headers(token) {
     return {
       'Accept': 'application/vnd.github.v3+json',
-      'Authorization': token ? ('Bearer ' + token) : undefined
+      'Authorization': token ? ('token ' + token) : undefined
     }
   }
 }
