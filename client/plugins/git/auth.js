@@ -24,9 +24,9 @@ export default {
                 return {
                     handle: currentUser.username,
                     name: {
-                    first: sliceName(currentUser.name)[0],
-                    last: sliceName(currentUser.name)[1],
-                    full: currentUser.name
+                        first: sliceName(currentUser.name)[0],
+                        last: sliceName(currentUser.name)[1],
+                        full: currentUser.name
                     },
                     avatar: currentUser.avatar_url,
                     email: currentUser.email,
