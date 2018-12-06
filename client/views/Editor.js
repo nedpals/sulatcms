@@ -36,8 +36,6 @@ export default {
       this.post.metadata[field] = [...(value.split(","))]
     }
 
-    console.log(this.post.metadata[field])
-
     if (field === 'title' && m.route.get() === '/new') {
       let newFilename = `${format(this.post.metadata.date, 'YYYY MM DD')}  ${value.substring(0, 30)}.md`.replace(/\s+/g, '-').toLowerCase()
       this.post.filename = newFilename
@@ -54,8 +52,18 @@ export default {
   },
   oninit(vnode) {
     window.scrollTo(0,0)
-    
-    vnode.state.post = store.state.posts.find(post => post.filename === vnode.attrs.key) || vnode.state.post
+    const post = store.state.posts.find(post => post.filename === vnode.attrs.key)
+
+    if (post && vnode.attrs.key) {
+      vnode.state.post = {...(post || vnode.state.post)}
+      vnode.state.post.metadata.tags = typeof(vnode.state.post.metadata.tags) === 'undefined' ? vnode.state.post.metadata._tags : vnode.state.post.metadata.tags
+      vnode.state.post.metadata.tags && (delete vnode.state.post.metadata._tags)
+    }
+
+    if (!post && vnode.attrs.key) {
+      m.route.set('/')
+    }
+
     fire('editor.initialize')
   },
   oncreate() {
