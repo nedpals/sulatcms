@@ -11,6 +11,7 @@ module.exports = (options, req) => ({
     transformModules: ['netlify-auth-providers'],
     presets: [
       require("poi-preset-bundle-report"),
+      require('poi-preset-babel-minify')(),
       require('poi-preset-webpackmonitor')({
         launch: true,
         port: 3001

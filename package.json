@@ -19,7 +19,7 @@
     "mdify": "^1.0.11",
     "mithril": "^1.1.6",
     "netlify-auth-providers": "https://github.com/netlify/netlify-auth-providers/",
-    "pen": "https://github.com/sofish/pen",
+    "poi-preset-babel-minify": "^1.0.3",
     "simplemde": "^1.11.2",
     "spectre.css": "^0.5.1"
   },
