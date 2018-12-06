@@ -12,16 +12,16 @@
   "author": "Ned Palacios",
   "license": "MIT",
   "dependencies": {
+    "@egoist/front-matter": "^1.0.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "date-fns": "^1.29.0",
-    "front-matter": "^2.3.0",
-    "mdify": "^1.0.11",
     "mithril": "^1.1.6",
     "netlify-auth-providers": "https://github.com/netlify/netlify-auth-providers/",
     "poi-preset-babel-minify": "^1.0.3",
     "simplemde": "^1.11.2",
-    "spectre.css": "^0.5.1"
+    "spectre.css": "^0.5.1",
+    "yaml": "^1.0.3"
   },
   "devDependencies": {
     "babel-plugin-transform-es2015-block-scoping": "^6.26.0",

@@ -1,7 +1,6 @@
 import { gitApi, gitDo } from "../git"
 import Globals from "../../../store/index"
-import Auth from "../../../store/auth"
-import fm from "front-matter"
+import fm, { fmTest } from "../../../utilities/fm"
 
 export default {
   beforePublish(filepath, filename, payload, search) {
@@ -47,10 +46,10 @@ export default {
             return files.map((file, i) => {
               let obj = {
                 metadata:
-                  fm.test(fileContents) && fm(fileContents[i]).attributes,
+                  fmTest(fileContents[i]) && fm(fileContents[i]).attributes,
                 file_path: file.path,
                 filename: file.name,
-                contents: fm.test(fileContents[i])
+                contents: fmTest(fileContents[i])
                   ? fm(fileContents[i]).body
                   : fileContents[i]
               }
