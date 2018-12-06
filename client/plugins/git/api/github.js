@@ -1,29 +1,29 @@
 import { github } from "./defaults"
+import Global from "../../../store/index"
 
 export default {
-  fetch(type, options) {
+  fetch(tree_sha) {
     return {
-      type: type,
-      path: "/repos/:repo/contents/:path",
+      path: `/repos/:repo/git/trees/${tree_sha}?recursive=1`,
       data: {
-        repo: Global.repo,
-        path: type === "path" ? options.path : ""
+        repo: Global.repo
       }
     }
   },
   fetchFileRaw(raw_url) {
     return {
       prefixed: true,
-      path: "raw_url",
-      deserialize: (value) => { return value },
+      path: raw_url,
+      deserialize: (blob) => { return atob(JSON.parse(blob).content) },
       async: false
     }
   },
-  createFile(commit) {
+  createFile(file_path, commit) {
     return {
       type: "PUT",
       path: "/repos/:repo/contents/:path",
       data: {
+        path: file_path,
         branch: commit.branch,
         content: btoa(commit.content),
         message: commit.message
@@ -35,6 +35,7 @@ export default {
       type: "PUT",
       path: "/repos/:repo/contents/:path",
       data: {
+        path: file_path,
         branch: commit.branch,
         content: btoa(commit.content),
         message: commit.message,
@@ -47,6 +48,7 @@ export default {
       type: "DELETE",
       path: "/repos/:repo/contents/:path",
       data: {
+        path: file_path,
         branch: commit.branch,
         content: btoa(commit.content),
         message: 'Delete Article ' + file.name + ' by ME',
