@@ -1,5 +1,6 @@
 import postData from "../mocks/post-data"
 import { fire } from "../modules/pluginSystem"
+import Globals from ".";
 
 let Post = {}
 
@@ -49,7 +50,7 @@ Post.actions = {
       Post.state.isLoading = false
     }
 
-    fire("hooks.loadList", [cb])
+    fire("hooks.loadList", [cb, Globals.keys.posts_path])
   }
 }
 
