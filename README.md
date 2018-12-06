@@ -3,8 +3,7 @@
 > **NOTE**: Unless this isn't yet fully complete, the version will remain as `1.0.0`
 
 # SulatCMS [![Maintainability](https://api.codeclimate.com/v1/badges/c2985411330f1b918966/maintainability)](https://codeclimate.com/github/nedpals/sulatcms/maintainability)
-Super simple platform-agnostic headless CMS made for you.
-
+Plugin-driven Headless CMS. Period.
 
 Sulat was built to adapt to the demands of the user and to any kind of SSG's (Static Site Generator) with it's extensibility built in mind.
 
@@ -16,6 +15,11 @@ Sulat was built to adapt to the demands of the user and to any kind of SSG's (St
 1. **Extensible** - Want to use Gitlab as gateway? Add a custom shortcode/widget? You can make a plugin for it. Sulat has a simple plugin system to make Sulat your own CMS.
 2. **Dead simple** - The interface doesn't have any additional steps to do what's supposed to do. Pick an article or create a new one with a click and start writing.
 3. **Powered by [Mithril](https://mithril.js.org)** - A tiny, complete out-of-the box Javascript library makes Sulat slim and fast.
+
+## Install
+```bash
+npm install sulat
+```
 
 ## Development Notes
 - Plugin system now implemented. I'm gonna think first what set of APIs will be implemented.

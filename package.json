@@ -1,7 +1,7 @@
 {
-  "name": "sulatcms",
+  "name": "sulat",
   "version": "0.1.0-alpha",
-  "description": "Super simple platorm-agnostic cms",
+  "description": "Plugin-driven headless cms",
   "main": "client/index.js",
   "scripts": {
     "test": "",
