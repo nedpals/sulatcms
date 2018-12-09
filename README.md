@@ -21,6 +21,15 @@ Sulat was built to adapt to the demands of the user and to any kind of SSG's (St
 npm install sulat
 ```
 
+or embed it directly
+
+```html
+<!-- Place the CSS file before the <head> closing tag -->
+<link rel="stylesheet" href="https://unpkg.com/sulat@0.1.0-alpha/dist/sulatcms.css">
+<!-- Place the javascript file before the <body> closing tag -->
+<script type="text/javascript" src="https://unpkg.com/sulat@0.1.0-alpha/dist/sulatcms.js">
+```
+
 ## Development Notes
 - Plugin system now implemented. I'm gonna think first what set of APIs will be implemented.
 <!-- - As much as possible, we will be avoiding jQuery or any library that might bloat the app to stay true about it's "lightweight" size. -->
@@ -41,14 +50,6 @@ To start:
 $ npm install
 ```
 
-or embed it directly
-
-```html
-<!-- Place the CSS file before the <head> closing tag -->
-<link rel="stylesheet" href="https://unpkg.com/sulat@0.1.0-alpha/dist/sulatcms.css">
-<!-- Place the javascript file before the <body> closing tag -->
-<script type="text/javascript" src="https://unpkg.com/sulat@0.1.0-alpha/dist/sulatcms.js">
-```
 
 To develop:
 
