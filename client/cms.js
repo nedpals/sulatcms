@@ -2,7 +2,7 @@ import Routes from "./routes"
 import Auth from "./store/auth"
 import Global from "./store"
 import { initializePlugins, fire } from "./modules/pluginSystem"
-import { gitPlugin } from "./plugins/git/plugin"
+import gitPlugin from "./plugins/git/plugin"
 
 function initialize(options, mount = document.body) {
   document.title = "SulatCMS"
@@ -25,7 +25,7 @@ function initialize(options, mount = document.body) {
   })
   
   initializePlugins([
-    gitPlugin()
+    gitPlugin
   ])
 
   const settings = Auth.settings
