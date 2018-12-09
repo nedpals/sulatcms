@@ -5,10 +5,13 @@ import Auth from "../store/auth"
 // Sulat plugin system
 
 function registerPlugin(name, pluginObj) {
-    Globals.plugins.push(Object.assign({
+    return {
         name: name,
-        activated: true
-    }, pluginObj))
+        activated: true, 
+        ...pluginObj
+    }
+}
+
 }
 
 function initializePlugins() {
