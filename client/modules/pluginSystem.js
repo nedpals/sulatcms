@@ -12,12 +12,21 @@ function registerPlugin(name, pluginObj) {
     }
 }
 
+function initializePlugin(name) {
+    const plugin = Globals.plugins.find(p => p.name = name)
+
+    if (plugin.name === name && plugin.activated)
+        plugin.initialize(Globals, Auth.settings)
 }
 
-function initializePlugins() {
+function initializePlugins(plugins = []) {
+    plugins.forEach(plugin => {
+        if (!Globals.plugins.find(p => p.name = plugin.name))
+            Globals.plugins.push(plugin)
+    })
+
     Globals.plugins.forEach(plugin => {
-        if (plugin.activated)
-            plugin.initialize(Globals, Auth.settings)
+        initializePlugin(plugin.name)
     })
 }
 
@@ -55,12 +64,6 @@ function fire(name, context) {
     })
 }
 
-function initializePlugin(name) {
-    Globals.plugins.forEach(plugin => {
-        if (plugin.name === name && plugin.activated)
-            plugin.initialize()
-    })
-}
 
 export {
     registerPlugin,
