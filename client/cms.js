@@ -6,11 +6,7 @@ import { initializePlugins, fire } from "./modules/pluginSystem"
 function initialize(options, mount = document.body) {
   document.title = "SulatCMS"
   Routes(mount)
-  // Auth.settings = {
-  //   provider: options.auth.provider,
-  //   netlify_id: options.auth.netlify_id
-  // }
-
+  
   Object.keys(options).map(option => {
     if (option.includes('auth')) {
       Object.keys(options[option]).map(authOpt => {
