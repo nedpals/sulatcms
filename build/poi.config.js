@@ -6,7 +6,7 @@ const path = require('path')
 module.exports = (options, req) => ({
     format: 'umd',
     moduleName: 'sulatcms',
-    entry: './client/index.js',
+    entry: ['./client/index.js', (process.env.NODE_ENV === "development" && './client/dev.js')],
     library: process.env.NODE_ENV === "production" ? 'sulatcms': undefined,
     transformModules: ['netlify-auth-providers'],
     presets: [
