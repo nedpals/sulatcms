@@ -16,7 +16,7 @@ function gitDo (endpoint) {
 
   return m.request({
       method: endpoint.method ? endpoint.method : "GET",
-      url: endpoint.prefixed ? endpoint.path : gitApi.defaults[provider].base_url + endpoint.path,
+      url: endpoint.prefixed ? endpoint.url : gitApi.defaults[provider].base_url + endpoint.path,
       headers: gitApi.defaults[provider].headers(token),
       data: endpoint.data,
       deserialize: endpoint.deserialize ? endpoint.deserialize : undefined
