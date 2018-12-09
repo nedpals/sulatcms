@@ -19,9 +19,11 @@ function initializePlugin(name) {
         plugin.initialize(Globals, Auth.settings)
 }
 
-function initializePlugins(plugins = []) {
-    plugins.forEach(plugin => {
-        if (!Globals.plugins.find(p => p.name = plugin.name))
+function initializePlugins(plugins) {
+    plugins.forEach(pl => {
+        const plugin = typeof (pl) === 'function' ? pl() : pl
+
+        if (!Globals.plugins.find(p => p.name === plugin.name))
             Globals.plugins.push(plugin)
     })
 
