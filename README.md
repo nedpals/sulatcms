@@ -43,6 +43,15 @@ To start:
 $ npm install
 ```
 
+or embed it directly
+
+```html
+<!-- Place the CSS file before the <head> closing tag -->
+<link rel="stylesheet" href="https://unpkg.com/sulat@0.1.0-alpha/dist/sulatcms.css">
+<!-- Place the javascript file before the <body> closing tag -->
+<script type="text/javascript" src="https://unpkg.com/sulat@0.1.0-alpha/dist/sulatcms.js">
+```
+
 To develop:
 
 ```bash
