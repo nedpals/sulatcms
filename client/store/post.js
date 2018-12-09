@@ -11,18 +11,18 @@ Post.state = {
 }
 
 Post.actions = {
-  savePost(filepath, filename, payload) {
+  savePost(file) {
 
     return new Promise((resolve, reject) => {
-      if (filepath && filename && payload) {
-        resolve([filepath, filename, payload])
+      if (file) {
+        resolve(file)
       } else {
-        reject(Error("One of the fields is missing"))
+        reject(Error("One of the fields in the file object is missing"))
       }
     })
-    .then(values => {
+    .then(file => {
       fire('hooks.beforePublish', [
-        ...values,
+        file,
         function search(name) {
           return Post.state.posts.find(p => p.filename === name) ? true : false
         },
@@ -32,8 +32,7 @@ Post.actions = {
   },
   deletePost(file) {
     let confirmDelete = confirm("You are about to delete this post.")
-    fire('hooks.beforeDelete', [file])
-
+    
     if (confirmDelete) {
       alert("Post Deleted")
       fire('hooks.afterDelete')

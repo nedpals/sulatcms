@@ -1,19 +1,25 @@
 import { gitDo, gitApi } from "../git";
+import Globals from "../../../store/index"
 import fm, { fmTest } from "../../../utilities/fm"
 
 export default {
-    beforePublish(filepath, filename, payload, search) {
-        let _commit_message = ''
+    beforePublish(file, search) {
+        const { filepath, filename, payload, sha } = file
+
+        let _commit_message = (search(filename) ? `${filename} updated` : `created ${filename}`)
 
         gitDo(
-            gitApi.endpoints.github[search(filename) ? 'updateFile' : 'createFile'],
-            filepath,
-            {
-                branch: Globals.branch,
-                content: payload,
-                message: _commit_message
-            }
+            gitApi.endpoints[localStorage.getItem("auth_provider")][search(filename) ? 'updateFile' : 'createFile'](
+                filepath,
+                {
+                    branch: Globals.branch,
+                    sha: search(filename) && sha,
+                    content: payload,
+                    message: _commit_message
+                }
+            )
         )
+    },
     beforeDelete(file) {
         const { file_path, sha } = file
 

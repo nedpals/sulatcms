@@ -3,7 +3,8 @@ import Globals from "../../../store/index"
 import fm, { fmTest } from "../../../utilities/fm"
 
 export default {
-  beforePublish(filepath, filename, payload, search) {
+  beforePublish(file, search) {
+    const { filepath, filename, payload } = file
     let _commit_message = (search(filename) ? `${filename} updated` : `created ${filename}`)
 
     gitDo(
@@ -62,6 +63,7 @@ export default {
                   fmTest(fileContents[i]) && fm(fileContents[i]).attributes,
                 file_path: file.path,
                 filename: file.name,
+                sha: file.sha,
                 contents: fmTest(fileContents[i])
                   ? fm(fileContents[i]).body
                   : fileContents[i]

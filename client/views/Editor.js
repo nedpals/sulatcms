@@ -48,7 +48,13 @@ export default {
     }
 
     let output = stringify(this.post.metadata, this.post.contents)
-    store.actions.savePost(this.post.file_path, this.post.filename, output)
+
+    store.actions.savePost({ 
+      filepath: this.post.file_path, 
+      filename: this.post.filename, 
+      payload: output, 
+      sha: this.post.sha 
+    })
   },
   oninit(vnode) {
     window.scrollTo(0,0)
