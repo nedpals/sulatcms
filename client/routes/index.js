@@ -7,12 +7,16 @@ export default function initRoutes(mount) {
     return m((layout ? layout : App), view)
   }
 
-  const auth = localStorage.getItem("auth_token") || Auth.loggedIn
-
   return m.route(mount, '/', {
     '/': {
       onmatch(args, requestedPath) {
-        if (!auth) return m.route.set('/login')
+        if (!localStorage.getItem("auth_token")) m.route.set('/login')
+        else m.route.set('/dashboard')
+      }
+    },
+    '/dashboard': {
+      onmatch(args, requestedPath) {
+        if (!localStorage.getItem("auth_token")) m.route.set('/login')
         else return View.Home
       },
       render(vnode) {
@@ -21,7 +25,7 @@ export default function initRoutes(mount) {
     },
     '/login': {
       onmatch(args, requestedPath) {
-        if (auth) return m.route.set('/')
+        if (localStorage.getItem("auth_token")) m.route.set('/dashboard')
         else return View.Login
       },
       render(vnode) {
@@ -30,7 +34,7 @@ export default function initRoutes(mount) {
     },
     '/edit/:key': {
       onmatch(args, requestedPath) {
-        if (!auth) return m.route.set('/login')
+        if (!localStorage.getItem("auth_token")) m.route.set('/login')
         else return View.Editor
       },
       render(vnode) {
@@ -39,7 +43,7 @@ export default function initRoutes(mount) {
     },
     '/new': {
       onmatch(args, requestedPath) {
-        if (!auth) return m.route.set('/login')
+        if (!localStorage.getItem("auth_token")) m.route.set('/login')
         else return View.Editor
       },
       render(vnode) {

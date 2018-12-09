@@ -67,7 +67,7 @@ export default {
     }
 
     if (!post && vnode.attrs.key) {
-      m.route.set('/')
+      m.route.set('/dashboard')
     }
 
     fire('editor.initialize')
@@ -89,7 +89,7 @@ export default {
     }
   },
   view(vnode) {
-    return m(OffCanvas, {customClass: "editor-view", currentId: this.post.filename, actions: { save: () => { this.savePost() }, delete: () => { store.actions.deletePost(Globals.keys.file) } }}, (
+    return m(OffCanvas, {customClass: "editor-view", currentId: this.post.filename, actions: { save: () => { this.savePost() }, delete: () => { store.actions.deletePost({ filename: vnode.attrs.key, sha: this.post.sha }) } }}, (
       <div class="container grid-md editor">
         <form class="form-horizonal columns">
           {Object.entries(this.post.metadata).map((fields) => {

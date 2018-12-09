@@ -52,10 +52,10 @@ let Auth = {
         }])
       })
         .then(data => {
-        localStorage.setItem("auth_provider", data.provider)
-        localStorage.setItem("auth_token", data.token)
-        localStorage.setItem("auth_refresh", data.refresh_token)
-        this.loggedIn = true
+          localStorage.setItem("auth_provider", data.provider)
+          localStorage.setItem("auth_token", data.token)
+          localStorage.setItem("auth_refresh", data.refresh_token)
+          this.loggedIn = true
           this.getCurrentUser()
           m.route.set('/dashboard')
           m.redraw()
@@ -66,11 +66,11 @@ let Auth = {
     },
     logout(e) {
       e.preventDefault()
-
-        localStorage.clear()
+      
+      localStorage.clear()
       Auth.state = AuthState
       Auth.loggedIn = false
-        m.route.set('/login') 
+      m.route.set('/login') 
       m.redraw()
     },
 }
