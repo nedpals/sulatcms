@@ -51,17 +51,14 @@ let Auth = {
       
       fire('auth.authenticate', [provider, user])
     },
-    logout() {
-      const cb = (fn) => {
-        fn()
+    logout(e) {
+      e.preventDefault()
 
         localStorage.clear()
-        this.loggedIn = false
-        this.state = AuthState
+      Auth.state = AuthState
+      Auth.loggedIn = false
         m.route.set('/login') 
-      }
-
-      fire('auth.revoke', [cb])
+      m.redraw()
     },
 }
 
