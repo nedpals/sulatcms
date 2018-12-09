@@ -8,16 +8,16 @@ function initialize(options, mount = document.body) {
   Routes(mount)
   
   Object.keys(options).map(option => {
+    if (typeof (options[option]) === 'object') {
     if (option.includes('auth')) {
       Object.keys(options[option]).map(authOpt => {
         Auth.settings[authOpt] = options[option][authOpt]
       })
-    }
-    
-    if (!option.includes('auth') && typeof (options[option]) === 'object') {
+      } else {
       Object.keys(options[option]).map(nestedOpt => {
         Global[option][nestedOpt] = options[option][nestedOpt] || (Global[option][nestedOpt] || "")
       })
+    }
     }
 
     Global[option] = options[option] || (Global[option] || "")
