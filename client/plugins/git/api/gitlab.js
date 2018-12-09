@@ -53,15 +53,14 @@ export default {
       path: `/projects/${encodeURIComponent(Global.repo)}/repository/files/:file_path`,
       data: {
         file_path: encodeURIComponent(file_path),
-        branch: 'master',
-        commit_message: 'Delete Article ' + file.name + ' by ME'
+        branch: commit.branch || Global.branch,
+        commit_message: commit.message || 'Delete Article ' + file.name + ' by ME'
       }
     }
   },
   getCurrentUser() {
     return {
-      prefixed: true,
-      url: `${gitlab.base_url}/user`
+      path: `/user`
     }
   }
 }
