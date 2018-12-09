@@ -23,7 +23,7 @@ const AuthState = Object.freeze({
 
 let Auth = {
     loggedIn: false,
-    state: Object.assign({}, AuthState),
+    state: {...AuthState},
     settings: {
       provider: '',
       netlify_id: '',
