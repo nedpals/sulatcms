@@ -7,9 +7,6 @@ export default {
     toggleMenu() {
         this.menuActive = !this.menuActive
     },
-    endSession() {
-      Auth.logout()
-    },
     view(vnode) {
       return (
         <header class="navbar sulat-navbar px-2 py-1">
@@ -46,7 +43,7 @@ export default {
                             </a>
                         </li> */}
                         <li class="menu-item">
-                            <button onclick={() => {this.endSession()}}>
+                            <button onclick={Auth.logout}>
                             Logout
                             </button>
                         </li>
