@@ -34,10 +34,13 @@ Post.actions = {
     let confirmDelete = confirm("You are about to delete this post.")
     
     if (confirmDelete) {
-      alert("Post Deleted")
-      fire('hooks.afterDelete')
-      m.route.set("/")
+      fire('hooks.beforeDelete', [{
+        file_path: `${Globals.keys.posts_path}${file}`,
+        sha: file.sha
+      }])
 
+      alert("Post Deleted")
+      m.route.set("/")
     }
   },
   refreshList() {
