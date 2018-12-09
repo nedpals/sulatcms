@@ -29,27 +29,40 @@ let Auth = {
       netlify_id: '',
     },
     getCurrentUser() {
-      // fire('auth.getUser', (user) => {
-      //   Auth.state.user = user
-      //   // console.log(user)
-      // })
+      return new Promise((resolve, reject) => {
+        fire('auth.getUser', [(user, err) => {
+          if (user || err) {
+            user && resolve(user)
+            err && reject(Error(err))
+          }
+        }])
+      })
+        .then(user => {
+          Auth.state.user = user
+        })
+        .catch(err => console.error(err))
     },
     authenticate(provider) {
-      const user = (data, err) => {
-        if (err) { this.state.error = err }
-
+      return new Promise((resolve, reject) => {
+        fire('auth.authenticate', [provider, (data, err) => {
+          if (data || err) {
+            data && resolve(data)
+            err && reject(Error(err))
+          }
+        }])
+      })
+        .then(data => {
         localStorage.setItem("auth_provider", data.provider)
         localStorage.setItem("auth_token", data.token)
         localStorage.setItem("auth_refresh", data.refresh_token)
-        // fire('auth.getUser', (user) => {
-        //   Auth.state.user = user
-        //   // console.log(user)
-        // })
         this.loggedIn = true
-        m.route.set('/')
-      }
-      
-      fire('auth.authenticate', [provider, user])
+          this.getCurrentUser()
+          m.route.set('/dashboard')
+          m.redraw()
+        })
+        .catch(err => {
+          this.state.error = err
+        })
     },
     logout(e) {
       e.preventDefault()
