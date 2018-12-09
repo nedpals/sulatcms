@@ -19,13 +19,14 @@ export default {
             })
         },
         getUser(user) {
+            
             gitDo(gitApi.endpoints[localStorage.getItem("auth_provider")].getCurrentUser())
             .then((currentUser) => {
                 return {
-                    handle: currentUser.username,
+                    handle: currentUser.username || currentUser.login,
                     name: {
-                        first: sliceName(currentUser.name)[0],
-                        last: sliceName(currentUser.name)[1],
+                        first: currentUser.name.split(" ")[0],
+                        last: currentUser.name.split(" ")[1],
                         full: currentUser.name
                     },
                     avatar: currentUser.avatar_url,
@@ -33,7 +34,8 @@ export default {
                     user_id: currentUser.id
                 }
             })
-            .then(profile => user(profile))
+            .then(profile => user(profile, null))
+            .catch(() => user(null, "Unknown error when fetching user data"))
         },
         revoke(cb) {
             cb(() => {
