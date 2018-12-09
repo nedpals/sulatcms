@@ -1,6 +1,6 @@
 > **ATTENTION**: This is currently in development. Please wait for the stable release.
 
-> **NOTE**: Unless this isn't yet fully complete, the version will remain as `1.0.0`
+> **NOTE**: Unless this isn't yet fully complete, the version will remain as `0.1.0`
 
 # SulatCMS [![Maintainability](https://api.codeclimate.com/v1/badges/c2985411330f1b918966/maintainability)](https://codeclimate.com/github/nedpals/sulatcms/maintainability)
 Plugin-driven Headless CMS. Period.
