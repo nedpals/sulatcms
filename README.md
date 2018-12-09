@@ -29,9 +29,7 @@ npm install sulat
 The file size of this library for the build`d6b291` reports about **600kb**. Feel free to submit tips on how to decrease it ([Click here!](https://github.com/nedpals/sulatcms/issues/3)).
 
 ## Pre-launch plans
-- [ ] Make Github and Gitlab as default platforms
-  - [x] Gitlab support
-  - [x] Github support (Partial support for now, only supports loading of files)
+- [x] ~~Make Github and Gitlab as default platforms~~
 - [x] Implement few API's for plugins
 - [ ] Cleanup the UI
 - [ ] Target file size should be atleast between *100-300kb*
