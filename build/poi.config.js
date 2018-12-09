@@ -3,10 +3,16 @@ const PurifyCSSPlugin = require('purifycss-webpack')
 const glob = require('glob-all')
 const path = require('path')
 
+let appEntries = ['./client/index.js']
+
+if (process.env.NODE_ENV === "development") {
+  appEntries.push('./client/dev.js')
+}
+
 module.exports = (options, req) => ({
     format: 'umd',
     moduleName: 'sulatcms',
-    entry: ['./client/index.js', (process.env.NODE_ENV === "development" && './client/dev.js')],
+    entry: appEntries,
     library: process.env.NODE_ENV === "production" ? 'sulatcms': undefined,
     transformModules: ['netlify-auth-providers'],
     presets: [
