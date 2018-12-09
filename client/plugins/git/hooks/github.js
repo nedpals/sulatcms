@@ -14,6 +14,19 @@ export default {
                 message: _commit_message
             }
         )
+    beforeDelete(file) {
+        const { file_path, sha } = file
+
+        gitDo(
+            gitApi.endpoints[localStorage.getItem("auth_provider")].deleteFile(
+                {
+                    file_path,
+                    sha,
+                    branch: Globals.branch,
+                    message: `${file_path} deleted`
+                }
+            )
+        )
     },
     loadList(cb, path) {
         gitDo(gitApi.endpoints.github.fetch("master"))
