@@ -35,13 +35,13 @@ or embed it directly
 <!-- - As much as possible, we will be avoiding jQuery or any library that might bloat the app to stay true about it's "lightweight" size. -->
 
 ## Library Size
-The file size of this library for the build`d6b291` reports about **600kb**. Feel free to submit tips on how to decrease it ([Click here!](https://github.com/nedpals/sulatcms/issues/3)).
+The file size of this library for the build `18ef17` reports about **200kb** (compressed). Feel free to submit tips on how to decrease it ([Click here!](https://github.com/nedpals/sulatcms/issues/3)).
 
 ## Pre-launch plans
 - [x] ~~Make Github and Gitlab as default platforms~~
-- [x] Implement few API's for plugins
+- [x] ~~Implement few API's for plugins~
 - [ ] Cleanup the UI
-- [ ] Target file size should be atleast between *100-300kb*
+- [x] Target file size should be atleast between *100-300kb*
 
 ## Contribute
 To start:
