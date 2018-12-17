@@ -1,30 +1,29 @@
-import SimpleMDE from "simplemde"
+import { init } from "pell"
+// import snarkdown from "snarkdown"
+// import TurndownService from "turndown"
+// import debounce from "debounce"
+
+// const turndownService = new TurndownService({ headingStyle: "atx" })
 
 export default {
   target: "contents",
   oncreate(vnode) {
-    const md = this.initEditor(document.getElementById("cms-editor"), vnode.attrs.value)
-    md.codemirror.focus()
-    md.codemirror.setCursor(100)
-    md.codemirror.on("change", () => {
-      vnode.dom.oninput = vnode.attrs.onchange(md.value())
+    this.editor = this.initEditor(document.getElementById("cms-editor"), (html) => {
+      // const output = turndownService.turndown(`${html}`)
+      vnode.dom.oninput = vnode.attrs.oninput(html)
     })
+
+    this.editor.content.innerHTML = vnode.attrs.value
   },
-  initEditor(el, val) {
-    return new SimpleMDE({
+  initEditor(el, onchange) {
+    return init({
       element: el,
-      initialValue: val,
-      spellChecker: false,
-      placeholder: "Type here...",
-      toolbarTips: false,
-      status: false,
-      autoDownloadFontAwesome: true,
-      forceSync: true
+      onChange: (html) => onchange(html)
     })
   },
   view() {
     return (
-      <textarea id="cms-editor"></textarea>
+      <div id="cms-editor" class="pell"></div>
     )
   }
 }
