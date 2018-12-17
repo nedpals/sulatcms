@@ -12,7 +12,6 @@ Post.state = {
 
 Post.actions = {
   savePost(file) {
-
     return new Promise((resolve, reject) => {
       if (file) {
         resolve(file)
@@ -28,6 +27,7 @@ Post.actions = {
         },
       ])
     })
+    .then(() => m.route.set("/dashboard"))
     .catch(err => console.error(err))
   },
   deletePost(file) {
@@ -40,7 +40,7 @@ Post.actions = {
       }])
 
       alert("Post Deleted")
-      m.route.set("/")
+      m.route.set("/dashboard")
     }
   },
   refreshList() {
