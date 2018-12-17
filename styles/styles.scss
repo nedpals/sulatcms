@@ -2,8 +2,8 @@
 @import "node_modules/spectre.css/src/spectre";
 @import "node_modules/spectre.css/src/spectre-exp";
 @import "node_modules/spectre.css/src/spectre-icons";
-@import "node_modules/simplemde/dist/simplemde.min";
-// @import 'node_modules/pell/src/pell';
+// @import "node_modules/simplemde/dist/simplemde.min";
+@import 'node_modules/pell/src/pell';
 
 .sulat-navbar {
     border-bottom: 1px solid $border-color;
@@ -11,6 +11,12 @@
 
 .editor {
     margin-top: 3rem;
+}
+
+.pell {
+    .pell-content {
+        white-space: pre-wrap;
+    }
 }
 
 .editor-view.off-canvas {
@@ -24,15 +30,6 @@
             margin-right: 0.4rem !important;
         }
     }
-}
-
-.editor .CodeMirror {
-    border: none;
-}
-
-.editor .editor-toolbar {
-    border: 1px solid #bbb;
-    border-radius: 4px;
 }
 
 .editor > .form-horizonal > .form-group label {

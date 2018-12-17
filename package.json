@@ -18,11 +18,14 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "date-fns": "^1.29.0",
+    "debounce": "^1.2.0",
+    "marked": "^0.5.2",
     "mithril": "^1.1.6",
     "netlify-auth-providers": "https://github.com/netlify/netlify-auth-providers/",
+    "pell": "^1.0.6",
     "poi-preset-babel-minify": "^1.0.3",
-    "simplemde": "^1.11.2",
     "spectre.css": "^0.5.1",
+    "turndown": "^5.0.1",
     "yaml": "^1.0.3"
   },
   "devDependencies": {
