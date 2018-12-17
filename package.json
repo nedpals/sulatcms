@@ -1,6 +1,6 @@
 {
   "name": "sulat",
-  "version": "0.1.0-alpha",
+  "version": "0.1.0-alpha2",
   "description": "Simple plugin-driven Headless CMS for JAMstack sites.",
   "main": "client/index.js",
   "homepage": "https://github.com/nedpals/sulatcms#readme",
