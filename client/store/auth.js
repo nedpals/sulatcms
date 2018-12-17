@@ -1,4 +1,5 @@
 import { fire } from "../modules/pluginSystem"
+import Post from "./post"
 
 const AuthState = Object.freeze({
   error: "",
@@ -57,6 +58,7 @@ let Auth = {
           localStorage.setItem("auth_refresh", data.refresh_token)
           this.loggedIn = true
           this.getCurrentUser()
+          Post.actions.refreshList()
           m.route.set('/dashboard')
           m.redraw()
         })
