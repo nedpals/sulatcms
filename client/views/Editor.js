@@ -107,7 +107,7 @@ export default {
             )
           })}
           <div class="col-12 col-sm-12">
-            {m(Component.RichText, { value: vnode.state.post.contents, onchange: (v) => this.setContent(v) })}
+            {m(Component.RichText, { value: vnode.state.post.contents, oninput: v => this.setContent(v) })}
           </div>
         </form>
       </div>
