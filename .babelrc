@@ -1,0 +1,16 @@
+{
+    "presets": [
+        ["@babel/typescript", { "jsxPragma": "m" }],
+        ["@babel/env", {
+            "targets": "> 0.25%, not dead"
+        }]
+    ],
+    "plugins": [
+        "@babel/plugin-transform-typescript",
+        ["@babel/plugin-transform-react-jsx", {
+            "pragma": "m",
+            "pragmaFrag": "'['"
+        }],
+        "@babel/plugin-transform-runtime"
+    ]
+}
