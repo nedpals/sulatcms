@@ -1,6 +1,6 @@
 import * as Sulat from "../src/app";
 import NetlifyIdentityLogin from "../src/plugins//netlify-identity";
-import CustomAPIPlugin from "../src/plugins/rest-api";
+import CustomAPIPlugin from "../src/plugins/custom-api";
 import GitlabPlugin from "../src/plugins/gitlab";
 
 Sulat.initialize({
